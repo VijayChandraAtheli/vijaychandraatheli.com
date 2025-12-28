@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    
+    <!-- SEO -->
+    {% seo %}
+    
+    <!-- Feed -->
+    {% feed_meta %}
+</head>
+<body>
+    <!-- Ambient Gradient Background -->
+    <div class="gradient-bg"></div>
+    
+    <!-- Reading Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <span id="themeIcon">🌙</span>
+    </button>
+    
+    <!-- Header -->
+    {% include header.html %}
+    
+    <!-- Main Content -->
+    <main>
+        {{ content }}
+    </main>
+    
+    <!-- Footer -->
+    {% include footer.html %}
+    
+    <!-- JavaScript -->
+    <script src="{{ '/assets/js/theme.js' | relative_url }}"></script>
+</body>
+</html>

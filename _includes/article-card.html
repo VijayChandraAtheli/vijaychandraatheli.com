@@ -1,0 +1,28 @@
+<article class="article-card">
+    <a href="{{ post.url | relative_url }}" class="card-link">
+        <div class="card-image-wrapper">
+            {% if post.image %}
+                <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" class="card-image">
+            {% else %}
+                <div class="card-image-placeholder"></div>
+            {% endif %}
+            <span class="card-category">{{ post.category | replace: '-', ' ' | upcase }}</span>
+        </div>
+        
+        <div class="card-content">
+            <h3 class="card-title">{{ post.title }}</h3>
+            
+            {% if post.excerpt %}
+                <p class="card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+            {% endif %}
+            
+            <div class="card-meta">
+                <span>{{ post.date | date: "%b %d, %Y" }}</span>
+                {% if site.show_reading_time %}
+                    <span class="meta-divider">·</span>
+                    <span>{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min</span>
+                {% endif %}
+            </div>
+        </div>
+    </a>
+</article>

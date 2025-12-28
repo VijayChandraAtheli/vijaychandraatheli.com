@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+<div class="container">
+    <article class="post">
+        <div class="article-header">
+            <span class="category-badge">{{ page.category | replace: '-', ' ' | capitalize }}</span>
+            
+            <h1 class="article-title">{{ page.title }}</h1>
+            
+            {% if page.excerpt %}
+                <p class="article-subtitle">{{ page.excerpt }}</p>
+            {% endif %}
+            
+            <div class="article-meta">
+                <div class="author-info">
+                    <div class="author-avatar">{{ site.author.name | slice: 0, 2 | upcase }}</div>
+                    <span class="author-name">{{ site.author.name }}</span>
+                </div>
+                <div class="meta-item">{{ page.date | date: "%b %d, %Y" }}</div>
+                {% if site.show_reading_time %}
+                    <div class="meta-item">{{ content | number_of_words | divided_by: 200 | plus: 1 }} min read</div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="article-content">
+            {{ content }}
+        </div>
+        
+        {% if page.tags %}
+        <div class="article-footer">
+            <p class="share-label">Topics</p>
+            <div class="tags">
+                {% for tag in page.tags %}
+                    <a href="#" class="tag">{{ tag }}</a>
+                {% endfor %}
+            </div>
+            <a href="{{ '/journal/' | relative_url }}" class="back-link">
+                <span>←</span>
+                <span>Back to Journal</span>
+            </a>
+        </div>
+        {% endif %}
+    </article>
+</div>

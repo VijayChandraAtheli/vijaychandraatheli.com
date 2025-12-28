@@ -1,0 +1,41 @@
+<div class="container">
+    <!-- Introduction Section -->
+    {% if page.intro %}
+    <section class="home-intro">
+        {{ page.intro | markdownify }}
+    </section>
+    {% endif %}
+    
+    <!-- Featured Articles -->
+    {% if site.featured_posts and site.featured_posts.size > 0 %}
+    <section class="featured-section">
+        <h2 class="section-title">Featured Articles</h2>
+        <div class="featured-grid">
+            {% for post_name in site.featured_posts limit:3 %}
+                {% for post in site.posts %}
+                    {% assign post_slug = post.id | split: '/' | last %}
+                    {% if post_slug == post_name or post.slug == post_name %}
+                        {% include article-card.html post=post %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+    
+    <!-- Latest Articles Grid -->
+    <section class="articles-section">
+        <h2 class="section-title">Latest Articles</h2>
+        <div class="articles-grid">
+            {% for post in site.posts limit:12 %}
+                {% include article-card.html post=post %}
+            {% endfor %}
+        </div>
+        
+        {% if site.posts.size > 12 %}
+        <div class="view-all">
+            <a href="{{ '/journal/' | relative_url }}" class="btn-primary">View All Articles →</a>
+        </div>
+        {% endif %}
+    </section>
+</div>
