@@ -1,6 +1,6 @@
 /* ==========================================================================
    VIJAY'S JOURNAL - JAVASCRIPT
-   Dark mode toggle + Reading progress + Sticky header
+   Fixed sticky header with no flickering + smooth scrolling
    ========================================================================== */
 
 (function() {
@@ -10,28 +10,20 @@
        DARK MODE TOGGLE
        ========================================================================== */
     
-    // Check for saved theme preference or default to light mode
     const currentTheme = localStorage.getItem('theme') || 'light';
     
-    // Apply theme on page load
     if (currentTheme === 'dark') {
         document.body.classList.add('dark-mode');
         updateThemeIcon('dark');
     }
     
-    // Toggle theme function
     window.toggleTheme = function() {
         const body = document.body;
         const isDark = body.classList.toggle('dark-mode');
-        
-        // Save preference
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        
-        // Update icon
         updateThemeIcon(isDark ? 'dark' : 'light');
     };
     
-    // Update theme icon
     function updateThemeIcon(theme) {
         const icon = document.getElementById('themeIcon');
         if (icon) {
@@ -40,29 +32,74 @@
     }
 
     /* ==========================================================================
-       STICKY HEADER (Compact on Scroll)
+       STICKY HEADER - SMOOTH IMPLEMENTATION
        ========================================================================== */
     
     const header = document.querySelector('header');
-    let lastScrollTop = 0;
-    const scrollThreshold = 100; // Pixels scrolled before header becomes sticky
+    if (!header) return; // Exit if no header found
     
+    const scrollThreshold = 150; // Pixels before header becomes sticky
+    let isSticky = false;
+    let ticking = false;
+    let headerPlaceholder = null;
+    
+    // Create placeholder element
+    function createPlaceholder() {
+        if (!headerPlaceholder) {
+            headerPlaceholder = document.createElement('div');
+            headerPlaceholder.className = 'header-placeholder';
+            headerPlaceholder.style.display = 'none';
+            header.parentNode.insertBefore(headerPlaceholder, header.nextSibling);
+        }
+    }
+    
+    // Handle sticky header with smooth transitions
     function handleStickyHeader() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        if (scrollTop > scrollThreshold) {
-            // User has scrolled down past threshold
-            header.classList.add('sticky');
-        } else {
-            // User is at the top
-            header.classList.remove('sticky');
+        if (scrollTop > scrollThreshold && !isSticky) {
+            // Make header sticky
+            const headerHeight = header.offsetHeight;
+            
+            // Add placeholder to prevent jump
+            createPlaceholder();
+            headerPlaceholder.style.height = headerHeight + 'px';
+            headerPlaceholder.style.display = 'block';
+            
+            // Add sticky class
+            requestAnimationFrame(() => {
+                header.classList.add('sticky');
+                isSticky = true;
+            });
+            
+        } else if (scrollTop <= scrollThreshold && isSticky) {
+            // Remove sticky
+            requestAnimationFrame(() => {
+                header.classList.remove('sticky');
+                isSticky = false;
+                
+                // Remove placeholder after transition
+                setTimeout(() => {
+                    if (headerPlaceholder) {
+                        headerPlaceholder.style.display = 'none';
+                    }
+                }, 300); // Match CSS transition duration
+            });
         }
         
-        lastScrollTop = scrollTop;
+        ticking = false;
     }
     
-    // Listen for scroll events
-    window.addEventListener('scroll', handleStickyHeader);
+    // Debounced scroll handler using requestAnimationFrame
+    function onScroll() {
+        if (!ticking) {
+            window.requestAnimationFrame(handleStickyHeader);
+            ticking = true;
+        }
+    }
+    
+    // Listen for scroll
+    window.addEventListener('scroll', onScroll, { passive: true });
     
     // Check on page load
     window.addEventListener('load', handleStickyHeader);
@@ -70,6 +107,8 @@
     /* ==========================================================================
        READING PROGRESS BAR
        ========================================================================== */
+    
+    let progressTicking = false;
     
     function updateProgressBar() {
         const progressBar = document.getElementById('progressBar');
@@ -79,25 +118,26 @@
         const scrolled = (window.scrollY / windowHeight) * 100;
         
         progressBar.style.width = Math.min(scrolled, 100) + '%';
+        progressTicking = false;
     }
     
-    // Update on scroll
-    window.addEventListener('scroll', updateProgressBar);
+    function onScrollProgress() {
+        if (!progressTicking) {
+            window.requestAnimationFrame(updateProgressBar);
+            progressTicking = true;
+        }
+    }
     
-    // Update on page load
+    window.addEventListener('scroll', onScrollProgress, { passive: true });
     window.addEventListener('load', updateProgressBar);
-    
-    // Update on resize
     window.addEventListener('resize', updateProgressBar);
 
     /* ==========================================================================
        SMOOTH SCROLL TO TOP
        ========================================================================== */
     
-    // Keyboard shortcut: Press 'T' to scroll to top
     document.addEventListener('keydown', function(e) {
         if (e.key === 't' || e.key === 'T') {
-            // Don't trigger if user is typing in an input
             if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
                 return;
             }
@@ -113,12 +153,10 @@
        ========================================================================== */
     
     document.addEventListener('DOMContentLoaded', function() {
-        // Open external links in new tab
         const links = document.querySelectorAll('a[href^="http"]');
         
         links.forEach(link => {
             if (link.hostname === window.location.hostname) return;
-            
             link.setAttribute('target', '_blank');
             link.setAttribute('rel', 'noopener noreferrer');
         });
@@ -136,13 +174,13 @@
     });
 
     /* ==========================================================================
-       PRINT STYLES
+       PRINT HANDLING
        ========================================================================== */
     
-    // Remove dark mode and sticky header when printing
     window.addEventListener('beforeprint', function() {
         document.body.classList.remove('dark-mode');
         if (header) header.classList.remove('sticky');
+        if (headerPlaceholder) headerPlaceholder.style.display = 'none';
     });
     
     window.addEventListener('afterprint', function() {
@@ -150,7 +188,6 @@
         if (savedTheme === 'dark') {
             document.body.classList.add('dark-mode');
         }
-        // Re-check sticky state after print
         handleStickyHeader();
     });
 
