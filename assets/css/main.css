@@ -113,23 +113,6 @@ body.header-is-sticky .theme-toggle {
 }
 
 /* ==========================================================================
-   READING PROGRESS BAR
-   ========================================================================== */
-
-.progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 4px;
-    width: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--gradient-end));
-    z-index: 10001;
-    transform: scaleX(0);
-    transform-origin: left;
-    will-change: transform;
-}
-
-/* ==========================================================================
    HEADER
    ========================================================================== */
 
