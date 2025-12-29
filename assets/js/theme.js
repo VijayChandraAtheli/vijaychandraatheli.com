@@ -1,6 +1,6 @@
 /* ==========================================================================
-   VIJAY'S JOURNAL - FIXED JAVASCRIPT
-   Root cause fixes: timing, z-index, height measurement
+   VIJAY'S JOURNAL - PRODUCTION READY JAVASCRIPT
+   Root cause fixes: proper placeholder, body class, measured height
    ========================================================================== */
 
 (function() {
@@ -32,50 +32,55 @@
     }
 
     /* ==========================================================================
-       STICKY HEADER - ROOT CAUSE FIXED
+       STICKY HEADER - PRODUCTION READY
        ========================================================================== */
     
     const header = document.querySelector('header');
     if (!header) return;
     
-    const scrollThreshold = 120;
+    const scrollThreshold = 100;
     let isSticky = false;
     let stickyTicking = false;
-    const stickyHeaderHeight = 52; // Fixed compact header height in pixels
     
-    // Create placeholder ONCE on page load
-    const headerPlaceholder = document.createElement('div');
-    headerPlaceholder.className = 'header-placeholder';
-    headerPlaceholder.style.height = '0px';
-    headerPlaceholder.style.transition = 'height 0.3s ease';
-    header.parentNode.insertBefore(headerPlaceholder, header.nextSibling);
+    // Create placeholder element ONCE
+    const placeholder = document.createElement('div');
+    placeholder.className = 'header-placeholder';
+    header.parentNode.insertBefore(placeholder, header.nextSibling);
+    
+    function makeSticky() {
+        if (isSticky) return;
+        isSticky = true;
+        
+        // Measure CURRENT header height before it changes
+        const currentHeight = header.getBoundingClientRect().height;
+        
+        // Set placeholder to current height
+        placeholder.style.height = currentHeight + 'px';
+        
+        // Add sticky class to header AND body
+        header.classList.add('sticky');
+        document.body.classList.add('header-is-sticky');
+    }
+    
+    function removeSticky() {
+        if (!isSticky) return;
+        isSticky = false;
+        
+        // Remove classes
+        header.classList.remove('sticky');
+        document.body.classList.remove('header-is-sticky');
+        
+        // Collapse placeholder (CSS transition handles smoothness)
+        placeholder.style.height = '0px';
+    }
     
     function handleStickyHeader() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        if (scrollTop > scrollThreshold && !isSticky) {
-            // Make header sticky
-            isSticky = true;
-            
-            // Set placeholder to COMPACT header height (not full header!)
-            headerPlaceholder.style.height = stickyHeaderHeight + 'px';
-            
-            // Add sticky class AFTER setting placeholder
-            requestAnimationFrame(() => {
-                header.classList.add('sticky');
-            });
-            
-        } else if (scrollTop <= scrollThreshold && isSticky) {
-            // Remove sticky
-            isSticky = false;
-            
-            // Remove sticky class first
-            header.classList.remove('sticky');
-            
-            // Then collapse placeholder after animation completes
-            setTimeout(() => {
-                headerPlaceholder.style.height = '0px';
-            }, 350); // Slightly after animation (300ms) completes
+        if (scrollTop > scrollThreshold) {
+            makeSticky();
+        } else {
+            removeSticky();
         }
         
         stickyTicking = false;
@@ -84,57 +89,66 @@
     function onStickyScroll() {
         if (!stickyTicking) {
             stickyTicking = true;
-            window.requestAnimationFrame(handleStickyHeader);
+            requestAnimationFrame(handleStickyHeader);
         }
     }
     
     window.addEventListener('scroll', onStickyScroll, { passive: true });
     window.addEventListener('load', handleStickyHeader);
+    
+    // Handle resize - recalculate if needed
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (isSticky) {
+                // Recalculate placeholder height if window resized while sticky
+                const currentHeight = header.getBoundingClientRect().height;
+                placeholder.style.height = currentHeight + 'px';
+            }
+        }, 150);
+    });
 
     /* ==========================================================================
-       READING PROGRESS BAR - THROTTLED
+       READING PROGRESS BAR - OPTIMIZED
        ========================================================================== */
     
     let progressTicking = false;
-    let lastProgressUpdate = 0;
-    const progressThrottle = 16; // ~60fps
     
     function updateProgressBar() {
-        const now = Date.now();
-        if (now - lastProgressUpdate < progressThrottle) {
-            progressTicking = false;
-            return;
-        }
-        
         const progressBar = document.getElementById('progressBar');
         if (!progressBar) {
             progressTicking = false;
             return;
         }
         
-        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (window.scrollY / windowHeight) * 100;
+        const docHeight = document.documentElement.scrollHeight;
+        const windowHeight = document.documentElement.clientHeight;
+        const scrollableHeight = docHeight - windowHeight;
         
+        if (scrollableHeight <= 0) {
+            progressBar.style.width = '100%';
+            progressTicking = false;
+            return;
+        }
+        
+        const scrolled = (window.scrollY / scrollableHeight) * 100;
         progressBar.style.width = Math.min(Math.max(scrolled, 0), 100) + '%';
-        lastProgressUpdate = now;
+        
         progressTicking = false;
     }
     
     function onScrollProgress() {
         if (!progressTicking) {
             progressTicking = true;
-            window.requestAnimationFrame(updateProgressBar);
+            requestAnimationFrame(updateProgressBar);
         }
     }
     
     window.addEventListener('scroll', onScrollProgress, { passive: true });
     window.addEventListener('load', updateProgressBar);
-    
-    // Debounce resize events
-    let resizeTimeout;
     window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(updateProgressBar, 150);
+        requestAnimationFrame(updateProgressBar);
     });
 
     /* ==========================================================================
@@ -144,12 +158,10 @@
     document.addEventListener('keydown', function(e) {
         if ((e.key === 't' || e.key === 'T') && 
             e.target.tagName !== 'INPUT' && 
-            e.target.tagName !== 'TEXTAREA') {
+            e.target.tagName !== 'TEXTAREA' &&
+            !e.ctrlKey && !e.metaKey) {
             e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
 
@@ -183,17 +195,13 @@
        ========================================================================== */
     
     window.addEventListener('beforeprint', function() {
-        const wasDark = document.body.classList.contains('dark-mode');
-        document.body.classList.remove('dark-mode');
+        document.body.classList.remove('dark-mode', 'header-is-sticky');
         header.classList.remove('sticky');
-        headerPlaceholder.style.height = '0px';
-        
-        // Store state
-        window._printState = { wasDark, wasSticky: isSticky };
+        placeholder.style.height = '0px';
     });
     
     window.addEventListener('afterprint', function() {
-        if (window._printState && window._printState.wasDark) {
+        if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
         }
         handleStickyHeader();

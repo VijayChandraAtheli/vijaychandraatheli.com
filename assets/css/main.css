@@ -108,8 +108,8 @@ body.dark-mode .theme-toggle {
     color: var(--dark);
 }
 
-header.sticky ~ .theme-toggle {
-    top: 80px;
+body.header-is-sticky .theme-toggle {
+    top: 70px;
 }
 
 /* ==========================================================================
@@ -154,7 +154,9 @@ body.dark-mode header {
 /* Placeholder to prevent content jump */
 .header-placeholder {
     width: 100%;
-    display: none;
+    height: 0;
+    transition: height 0.3s ease;
+    overflow: hidden;
 }
 
 /* Sticky Compact State - Single Line, Centered */
