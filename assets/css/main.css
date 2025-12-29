@@ -134,7 +134,7 @@ body.dark-mode .theme-toggle {
 header {
     max-width: 100%;
     padding: 60px 40px 35px 40px;
-    margin: 0 0 50px 0;
+    margin: 0 0 30px 0;
     text-align: center;
     border-bottom: 2px solid var(--dark);
     animation: fadeInDown 0.8s ease;
@@ -269,7 +269,7 @@ body.dark-mode footer {
    ========================================================================== */
 
 .home-intro {
-    margin-bottom: 70px;
+    margin-bottom: 60px;
     animation: fadeIn 1s ease;
 }
 
@@ -282,7 +282,7 @@ body.dark-mode footer {
     font-family: 'Work Sans', sans-serif;
     font-size: 34px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     letter-spacing: -1px;
     text-align: center;
     line-height: 1.3;
@@ -294,7 +294,7 @@ body.dark-mode footer {
     font-weight: 400;
     font-style: italic;
     color: var(--gray);
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     text-align: center;
     line-height: 1.4;
 }
@@ -327,7 +327,7 @@ body.dark-mode footer {
    ========================================================================== */
 
 .featured-section {
-    margin-bottom: 70px;
+    margin-bottom: 60px;
 }
 
 .featured-grid {
@@ -417,23 +417,23 @@ body.dark-mode .article-card:hover {
     opacity: 0.1;
 }
 
-/* Category Badge (Top-Right Corner) */
+/* Category Badge (Top-Right Corner - MUCH SMALLER) */
 .card-category {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 8px;
+    right: 8px;
     background: var(--accent);
     color: white;
-    padding: 4px 10px;
+    padding: 3px 7px;
     font-family: 'Work Sans', sans-serif;
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 700;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     border-radius: 2px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
     z-index: 10;
-    opacity: 0.95;
+    opacity: 0.8;
 }
 
 /* Card Content */
@@ -801,7 +801,7 @@ body.dark-mode .article-footer {
 }
 
 /* ==========================================================================
-   STATIC PAGES (About, Journal)
+   STATIC PAGES (About, Journal, Category Pages)
    ========================================================================== */
 
 .page {
@@ -810,7 +810,7 @@ body.dark-mode .article-footer {
 
 .page-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
 }
 
 .page-title {
@@ -818,11 +818,11 @@ body.dark-mode .article-footer {
     font-size: 44px;
     font-weight: 800;
     letter-spacing: -2px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
 
 .page-subtitle {
-    font-size: 21px;
+    font-size: 20px;
     color: var(--gray);
     line-height: 1.45;
 }
@@ -833,7 +833,7 @@ body.dark-mode .article-footer {
 }
 
 .page-content p {
-    margin-bottom: 0.95em;
+    margin-bottom: 0.9em;
     line-height: 1.6;
 }
 
@@ -841,7 +841,7 @@ body.dark-mode .article-footer {
     font-family: 'Work Sans', sans-serif;
     font-size: 30px;
     font-weight: 700;
-    margin: 42px 0 20px 0;
+    margin: 40px 0 18px 0;
     letter-spacing: -1px;
 }
 
@@ -849,15 +849,15 @@ body.dark-mode .article-footer {
     font-family: 'Work Sans', sans-serif;
     font-size: 23px;
     font-weight: 600;
-    margin: 32px 0 16px 0;
+    margin: 30px 0 14px 0;
 }
 
 .page-content ul {
-    margin: 1.2em 0 1.2em 2em;
+    margin: 1.1em 0 1.1em 2em;
 }
 
 .page-content li {
-    margin-bottom: 0.45em;
+    margin-bottom: 0.4em;
     line-height: 1.6;
 }
 
@@ -879,6 +879,7 @@ body.dark-mode .article-footer {
     
     header {
         padding: 50px 30px 28px 30px;
+        margin-bottom: 25px;
     }
     
     .site-title {
@@ -914,6 +915,7 @@ body.dark-mode .article-footer {
     
     header {
         padding: 45px 20px 22px 20px;
+        margin-bottom: 20px;
     }
     
     .site-title {
@@ -983,6 +985,14 @@ body.dark-mode .article-footer {
     
     .home-intro p {
         font-size: 17px;
+    }
+    
+    .page-header {
+        margin-bottom: 28px;
+    }
+    
+    .page-title {
+        font-size: 34px;
     }
 }
 
