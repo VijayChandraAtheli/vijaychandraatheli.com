@@ -38,8 +38,8 @@ body {
     font-family: 'Crimson Pro', Georgia, serif;
     background: var(--light);
     color: var(--dark);
-    line-height: 1.5;
-    font-size: 19px;
+    line-height: 1.4;
+    font-size: 18px;
     transition: background 0.3s ease, color 0.3s ease;
 }
 
@@ -361,10 +361,10 @@ body.dark-mode footer {
    ========================================================================== */
 
 .home-intro {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     animation: fadeIn 1s ease;
     position: relative;
-    padding: 25px 0;
+    padding: 20px 0;
 }
 
 @keyframes fadeIn {
@@ -391,29 +391,29 @@ body.dark-mode footer {
 
 .home-intro h2 {
     font-family: 'Work Sans', sans-serif;
-    font-size: 34px;
+    font-size: 32px;
     font-weight: 700;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     letter-spacing: -1px;
     text-align: center;
-    line-height: 1.25;
+    line-height: 1.2;
 }
 
 .home-intro h3 {
     font-family: 'Crimson Pro', serif;
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 400;
     font-style: italic;
     color: var(--gray);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     text-align: center;
-    line-height: 1.35;
+    line-height: 1.32;
 }
 
 .home-intro p {
-    font-size: 19px;
-    line-height: 1.5;
-    margin-bottom: 0.7em;
+    font-size: 18px;
+    line-height: 1.45;
+    margin-bottom: 0.6em;
     max-width: 750px;
     margin-left: auto;
     margin-right: auto;
@@ -456,7 +456,7 @@ body.dark-mode footer {
    ========================================================================== */
 
 .featured-section {
-    margin-bottom: 45px;
+    margin-bottom: 35px;
 }
 
 .featured-grid {
@@ -467,7 +467,7 @@ body.dark-mode footer {
 }
 
 .articles-section {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .articles-grid {
@@ -641,7 +641,7 @@ body.dark-mode .article-card:hover {
 }
 
 .article-header {
-    margin-bottom: 35px;
+    margin-bottom: 28px;
 }
 
 .category-badge {
@@ -746,12 +746,12 @@ body.dark-mode .article-meta {
    ========================================================================== */
 
 .article-content {
-    margin: 35px 0 50px 0;
+    margin: 28px 0 40px 0;
 }
 
 .article-content p {
-    margin-bottom: 0.75em;
-    line-height: 1.58;
+    margin-bottom: 0.5em;
+    line-height: 1.45;
     transition: transform 0.2s ease;
 }
 
@@ -761,26 +761,26 @@ body.dark-mode .article-meta {
 
 .article-content h2 {
     font-family: 'Work Sans', sans-serif;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 700;
     letter-spacing: -1px;
-    margin: 35px 0 16px 0;
+    margin: 28px 0 14px 0;
     line-height: 1.2;
 }
 
 .article-content h3 {
     font-family: 'Work Sans', sans-serif;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
     letter-spacing: -0.5px;
-    margin: 28px 0 14px 0;
+    margin: 22px 0 12px 0;
 }
 
 .article-content h4 {
     font-family: 'Work Sans', sans-serif;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: 600;
-    margin: 24px 0 12px 0;
+    margin: 18px 0 10px 0;
 }
 
 .article-content a {
@@ -795,20 +795,20 @@ body.dark-mode .article-meta {
 
 .article-content ul,
 .article-content ol {
-    margin: 1em 0 1em 2em;
+    margin: 0.7em 0 0.7em 2em;
 }
 
 .article-content li {
-    margin-bottom: 0.3em;
-    line-height: 1.5;
+    margin-bottom: 0.2em;
+    line-height: 1.4;
 }
 
 .article-content blockquote {
-    font-size: 22px;
-    line-height: 1.5;
+    font-size: 21px;
+    line-height: 1.45;
     font-style: italic;
-    margin: 28px 0;
-    padding: 22px 0 22px 25px;
+    margin: 22px 0;
+    padding: 18px 0 18px 22px;
     border-left: 4px solid var(--accent);
     color: var(--gray);
 }
@@ -816,7 +816,7 @@ body.dark-mode .article-meta {
 .article-content img {
     max-width: 100%;
     height: auto;
-    margin: 24px 0;
+    margin: 20px 0;
     border-radius: 8px;
 }
 
@@ -835,10 +835,10 @@ body.dark-mode .article-content code {
 .article-content pre {
     background: var(--dark);
     color: #00ff88;
-    padding: 18px;
+    padding: 16px;
     border-radius: 8px;
     overflow-x: auto;
-    margin: 24px 0;
+    margin: 20px 0;
 }
 
 body.dark-mode .article-content pre {
@@ -856,8 +856,8 @@ body.dark-mode .article-content pre {
    ========================================================================== */
 
 .article-footer {
-    margin-top: 45px;
-    padding-top: 28px;
+    margin-top: 35px;
+    padding-top: 24px;
     border-top: 2px solid var(--dark);
 }
 
@@ -959,32 +959,32 @@ body.dark-mode .article-footer {
 }
 
 .page-content p {
-    margin-bottom: 0.7em;
-    line-height: 1.55;
+    margin-bottom: 0.55em;
+    line-height: 1.48;
 }
 
 .page-content h2 {
     font-family: 'Work Sans', sans-serif;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
-    margin: 32px 0 14px 0;
+    margin: 26px 0 12px 0;
     letter-spacing: -1px;
 }
 
 .page-content h3 {
     font-family: 'Work Sans', sans-serif;
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 600;
-    margin: 24px 0 12px 0;
+    margin: 20px 0 10px 0;
 }
 
 .page-content ul {
-    margin: 0.9em 0 0.9em 2em;
+    margin: 0.7em 0 0.7em 2em;
 }
 
 .page-content li {
-    margin-bottom: 0.3em;
-    line-height: 1.5;
+    margin-bottom: 0.2em;
+    line-height: 1.42;
 }
 
 /* ==========================================================================
