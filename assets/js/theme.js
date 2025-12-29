@@ -1,6 +1,6 @@
 /* ==========================================================================
-   VIJAY'S JOURNAL - PRODUCTION JAVASCRIPT
-   Perfect sticky header: no gaps, no jumps, smooth transitions
+   VIJAY'S JOURNAL - ULTRA SMOOTH JAVASCRIPT
+   Zero flicker solution
    ========================================================================== */
 
 (function() {
@@ -32,7 +32,7 @@
     }
 
     /* ==========================================================================
-       STICKY HEADER - PERFECT IMPLEMENTATION
+       STICKY HEADER - ULTRA SMOOTH
        ========================================================================== */
     
     const header = document.querySelector('header');
@@ -41,9 +41,9 @@
     const scrollThreshold = 100;
     let isSticky = false;
     let stickyTicking = false;
-    let expandedHeight = 0;
+    let isTransitioning = false;
     
-    // Create placeholder element ONCE on page load
+    // Create placeholder element
     const placeholder = document.createElement('div');
     placeholder.className = 'header-placeholder';
     header.parentNode.insertBefore(placeholder, header.nextSibling);
@@ -51,41 +51,60 @@
     function makeSticky() {
         if (isSticky) return;
         isSticky = true;
+        isTransitioning = true;
         
-        // 1) Measure expanded header height (before sticky)
-        expandedHeight = header.getBoundingClientRect().height;
+        // Measure expanded header height
+        const expandedHeight = header.getBoundingClientRect().height;
         placeholder.style.height = expandedHeight + 'px';
         
-        // 2) Apply sticky class
+        // Apply sticky class
         header.classList.add('sticky');
         document.body.classList.add('header-is-sticky');
         
-        // 3) After DOM applies sticky layout, measure compact sticky height
+        // Measure compact height and animate placeholder
         requestAnimationFrame(() => {
             const stickyHeight = header.getBoundingClientRect().height;
             placeholder.style.height = stickyHeight + 'px';
+            
+            // Mark transition complete after animation
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 350);
         });
     }
     
     function removeSticky() {
         if (!isSticky) return;
         isSticky = false;
+        isTransitioning = true;
         
-        // Keep space equal to current sticky header height until header returns to flow
+        // Keep current sticky height
         const stickyHeight = header.getBoundingClientRect().height;
         placeholder.style.height = stickyHeight + 'px';
         
+        // Remove sticky class
         header.classList.remove('sticky');
         document.body.classList.remove('header-is-sticky');
         
-        // Next frame: header is back in normal flow, so placeholder should collapse
+        // Collapse placeholder
         requestAnimationFrame(() => {
             placeholder.style.height = '0px';
+            
+            // Mark transition complete
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 350);
         });
     }
     
     function handleStickyHeader() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Don't change state during transition
+        if (isTransitioning) {
+            stickyTicking = false;
+            return;
+        }
         
         if (scrollTop > scrollThreshold) {
             makeSticky();
@@ -105,28 +124,23 @@
     
     window.addEventListener('scroll', onStickyScroll, { passive: true });
     window.addEventListener('load', handleStickyHeader);
-    
-    // Handle resize - recalculate if sticky
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            if (isSticky) {
-                const currentStickyHeight = header.getBoundingClientRect().height;
-                placeholder.style.height = currentStickyHeight + 'px';
-            }
-        }, 150);
-    });
 
     /* ==========================================================================
-       READING PROGRESS BAR
+       READING PROGRESS BAR - SMOOTH
        ========================================================================== */
     
+    const progressBar = document.getElementById('progressBar');
     let progressTicking = false;
+    let lastKnownScrollY = 0;
     
     function updateProgressBar() {
-        const progressBar = document.getElementById('progressBar');
         if (!progressBar) {
+            progressTicking = false;
+            return;
+        }
+        
+        // Skip updates during sticky transitions to prevent flicker
+        if (isTransitioning) {
             progressTicking = false;
             return;
         }
@@ -136,18 +150,24 @@
         const scrollableHeight = docHeight - windowHeight;
         
         if (scrollableHeight <= 0) {
-            progressBar.style.width = '100%';
+            progressBar.style.width = '0%';
             progressTicking = false;
             return;
         }
         
-        const scrolled = (window.scrollY / scrollableHeight) * 100;
-        progressBar.style.width = Math.min(Math.max(scrolled, 0), 100) + '%';
+        const scrolled = (lastKnownScrollY / scrollableHeight) * 100;
+        const clampedProgress = Math.min(Math.max(scrolled, 0), 100);
+        
+        // Use transform instead of width for better performance
+        progressBar.style.transform = `scaleX(${clampedProgress / 100})`;
+        progressBar.style.transformOrigin = 'left';
         
         progressTicking = false;
     }
     
     function onScrollProgress() {
+        lastKnownScrollY = window.scrollY;
+        
         if (!progressTicking) {
             progressTicking = true;
             requestAnimationFrame(updateProgressBar);
@@ -211,6 +231,7 @@
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
         }
+        isTransitioning = false;
         handleStickyHeader();
     });
 
