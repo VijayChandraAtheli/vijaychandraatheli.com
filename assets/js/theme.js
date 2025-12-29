@@ -1,6 +1,6 @@
 /* ==========================================================================
-   VIJAY'S JOURNAL - PRODUCTION READY JAVASCRIPT
-   Root cause fixes: proper placeholder, body class, measured height
+   VIJAY'S JOURNAL - PRODUCTION JAVASCRIPT
+   Perfect sticky header: no gaps, no jumps, smooth transitions
    ========================================================================== */
 
 (function() {
@@ -32,7 +32,7 @@
     }
 
     /* ==========================================================================
-       STICKY HEADER - PRODUCTION READY
+       STICKY HEADER - PERFECT IMPLEMENTATION
        ========================================================================== */
     
     const header = document.querySelector('header');
@@ -41,8 +41,9 @@
     const scrollThreshold = 100;
     let isSticky = false;
     let stickyTicking = false;
+    let expandedHeight = 0;
     
-    // Create placeholder element ONCE
+    // Create placeholder element ONCE on page load
     const placeholder = document.createElement('div');
     placeholder.className = 'header-placeholder';
     header.parentNode.insertBefore(placeholder, header.nextSibling);
@@ -51,27 +52,36 @@
         if (isSticky) return;
         isSticky = true;
         
-        // Measure CURRENT header height before it changes
-        const currentHeight = header.getBoundingClientRect().height;
+        // 1) Measure expanded header height (before sticky)
+        expandedHeight = header.getBoundingClientRect().height;
+        placeholder.style.height = expandedHeight + 'px';
         
-        // Set placeholder to current height
-        placeholder.style.height = currentHeight + 'px';
-        
-        // Add sticky class to header AND body
+        // 2) Apply sticky class
         header.classList.add('sticky');
         document.body.classList.add('header-is-sticky');
+        
+        // 3) After DOM applies sticky layout, measure compact sticky height
+        requestAnimationFrame(() => {
+            const stickyHeight = header.getBoundingClientRect().height;
+            placeholder.style.height = stickyHeight + 'px';
+        });
     }
     
     function removeSticky() {
         if (!isSticky) return;
         isSticky = false;
         
-        // Remove classes
+        // Keep space equal to current sticky header height until header returns to flow
+        const stickyHeight = header.getBoundingClientRect().height;
+        placeholder.style.height = stickyHeight + 'px';
+        
         header.classList.remove('sticky');
         document.body.classList.remove('header-is-sticky');
         
-        // Collapse placeholder (CSS transition handles smoothness)
-        placeholder.style.height = '0px';
+        // Next frame: header is back in normal flow, so placeholder should collapse
+        requestAnimationFrame(() => {
+            placeholder.style.height = '0px';
+        });
     }
     
     function handleStickyHeader() {
@@ -96,21 +106,20 @@
     window.addEventListener('scroll', onStickyScroll, { passive: true });
     window.addEventListener('load', handleStickyHeader);
     
-    // Handle resize - recalculate if needed
+    // Handle resize - recalculate if sticky
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
             if (isSticky) {
-                // Recalculate placeholder height if window resized while sticky
-                const currentHeight = header.getBoundingClientRect().height;
-                placeholder.style.height = currentHeight + 'px';
+                const currentStickyHeight = header.getBoundingClientRect().height;
+                placeholder.style.height = currentStickyHeight + 'px';
             }
         }, 150);
     });
 
     /* ==========================================================================
-       READING PROGRESS BAR - OPTIMIZED
+       READING PROGRESS BAR
        ========================================================================== */
     
     let progressTicking = false;
@@ -147,9 +156,7 @@
     
     window.addEventListener('scroll', onScrollProgress, { passive: true });
     window.addEventListener('load', updateProgressBar);
-    window.addEventListener('resize', () => {
-        requestAnimationFrame(updateProgressBar);
-    });
+    window.addEventListener('resize', () => requestAnimationFrame(updateProgressBar));
 
     /* ==========================================================================
        SMOOTH SCROLL TO TOP
