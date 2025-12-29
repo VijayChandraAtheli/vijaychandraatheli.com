@@ -139,7 +139,7 @@ header {
     border-bottom: 2px solid var(--dark);
     background: var(--light);
     transition: all 0.3s ease;
-    z-index: 1000;
+    z-index: 999;  
 }
 
 body.dark-mode header {
@@ -170,7 +170,7 @@ header.sticky {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 9999;
     background: var(--light);
     border-bottom: 1px solid var(--border);
 }
