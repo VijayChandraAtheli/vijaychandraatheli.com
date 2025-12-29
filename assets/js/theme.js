@@ -31,153 +31,142 @@
         }
     }
 
-    /* ==========================================================================
-       STICKY HEADER - ULTRA SMOOTH
-       ========================================================================== */
+/* ==========================================================================
+   STICKY HEADER - ULTRA SMOOTH
+   ========================================================================== */
+
+const header = document.querySelector('header');
+if (!header) return;
+
+const scrollThreshold = 100;
+let isSticky = false;
+let stickyTicking = false;
+let isTransitioning = false;
+
+// Create placeholder element
+const placeholder = document.createElement('div');
+placeholder.className = 'header-placeholder';
+header.parentNode.insertBefore(placeholder, header.nextSibling);
+
+function makeSticky() {
+    if (isSticky) return;
+    isSticky = true;
+    isTransitioning = true;
     
-    const header = document.querySelector('header');
-    if (!header) return;
+    // Measure expanded header height
+    const expandedHeight = header.getBoundingClientRect().height;
+    placeholder.style.height = expandedHeight + 'px';
     
-    const scrollThreshold = 100;
-    let isSticky = false;
-    let stickyTicking = false;
-    let isTransitioning = false;
+    // Apply sticky class
+    header.classList.add('sticky');
+    document.body.classList.add('header-is-sticky');
     
-    // Create placeholder element
-    const placeholder = document.createElement('div');
-    placeholder.className = 'header-placeholder';
-    header.parentNode.insertBefore(placeholder, header.nextSibling);
-    
-    function makeSticky() {
-        if (isSticky) return;
-        isSticky = true;
-        isTransitioning = true;
-        
-        // Measure expanded header height
-        const expandedHeight = header.getBoundingClientRect().height;
-        placeholder.style.height = expandedHeight + 'px';
-        
-        // Apply sticky class
-        header.classList.add('sticky');
-        document.body.classList.add('header-is-sticky');
-        
-        // Measure compact height and animate placeholder
-        requestAnimationFrame(() => {
-            const stickyHeight = header.getBoundingClientRect().height;
-            placeholder.style.height = stickyHeight + 'px';
-            
-            // Mark transition complete after animation
-            setTimeout(() => {
-                isTransitioning = false;
-            }, 350);
-        });
-    }
-    
-    function removeSticky() {
-        if (!isSticky) return;
-        isSticky = false;
-        isTransitioning = true;
-        
-        // Keep current sticky height
+    // Measure compact height and animate placeholder
+    requestAnimationFrame(() => {
         const stickyHeight = header.getBoundingClientRect().height;
         placeholder.style.height = stickyHeight + 'px';
         
-        // Remove sticky class
-        header.classList.remove('sticky');
-        document.body.classList.remove('header-is-sticky');
-        
-        // Collapse placeholder
-        requestAnimationFrame(() => {
-            placeholder.style.height = '0px';
-            
-            // Mark transition complete
-            setTimeout(() => {
-                isTransitioning = false;
-            }, 350);
-        });
-    }
-    
-    function handleStickyHeader() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Don't change state during transition
-        if (isTransitioning) {
-            stickyTicking = false;
-            return;
-        }
-        
-        if (scrollTop > scrollThreshold) {
-            makeSticky();
-        } else {
-            removeSticky();
-        }
-        
-        stickyTicking = false;
-    }
-    
-    function onStickyScroll() {
-        if (!stickyTicking) {
-            stickyTicking = true;
-            requestAnimationFrame(handleStickyHeader);
-        }
-    }
-    
-    window.addEventListener('scroll', onStickyScroll, { passive: true });
-    window.addEventListener('load', handleStickyHeader);
+        // Mark transition complete and force progress update
+        setTimeout(() => {
+            isTransitioning = false;
+            updateProgressBar(); // ← ADD THIS LINE
+        }, 350);
+    });
+}
 
-    /* ==========================================================================
-       READING PROGRESS BAR - SMOOTH
-       ========================================================================== */
+function removeSticky() {
+    if (!isSticky) return;
+    isSticky = false;
+    isTransitioning = true;
     
-    const progressBar = document.getElementById('progressBar');
-    let progressTicking = false;
-    let lastKnownScrollY = 0;
+    // Keep current sticky height
+    const stickyHeight = header.getBoundingClientRect().height;
+    placeholder.style.height = stickyHeight + 'px';
     
-    function updateProgressBar() {
-        if (!progressBar) {
-            progressTicking = false;
-            return;
-        }
+    // Remove sticky class
+    header.classList.remove('sticky');
+    document.body.classList.remove('header-is-sticky');
+    
+    // Collapse placeholder
+    requestAnimationFrame(() => {
+        placeholder.style.height = '0px';
         
-        // Skip updates during sticky transitions to prevent flicker
-        if (isTransitioning) {
-            progressTicking = false;
-            return;
-        }
-        
-        const docHeight = document.documentElement.scrollHeight;
-        const windowHeight = document.documentElement.clientHeight;
-        const scrollableHeight = docHeight - windowHeight;
-        
-        if (scrollableHeight <= 0) {
-            progressBar.style.width = '0%';
-            progressTicking = false;
-            return;
-        }
-        
-        const scrolled = (lastKnownScrollY / scrollableHeight) * 100;
-        const clampedProgress = Math.min(Math.max(scrolled, 0), 100);
-        
-        // Use transform instead of width for better performance
-        progressBar.style.transform = `scaleX(${clampedProgress / 100})`;
-        progressBar.style.transformOrigin = 'left';
-        
+        // Mark transition complete and force progress update
+        setTimeout(() => {
+            isTransitioning = false;
+            updateProgressBar(); // ← ADD THIS LINE
+        }, 350);
+    });
+}
+
+function handleStickyHeader() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > scrollThreshold) {
+        makeSticky();
+    } else {
+        removeSticky();
+    }
+    
+    stickyTicking = false;
+}
+
+function onStickyScroll() {
+    if (!stickyTicking) {
+        stickyTicking = true;
+        requestAnimationFrame(handleStickyHeader);
+    }
+}
+
+window.addEventListener('scroll', onStickyScroll, { passive: true });
+window.addEventListener('load', handleStickyHeader);
+
+/* ==========================================================================
+   READING PROGRESS BAR - ALWAYS ACCURATE
+   ========================================================================== */
+
+const progressBar = document.getElementById('progressBar');
+let progressTicking = false;
+
+function updateProgressBar() {
+    if (!progressBar) {
         progressTicking = false;
+        return;
     }
     
-    function onScrollProgress() {
-        lastKnownScrollY = window.scrollY;
-        
-        if (!progressTicking) {
-            progressTicking = true;
-            requestAnimationFrame(updateProgressBar);
-        }
+    // ALWAYS use live scroll values
+    const scrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight;
+    const windowHeight = document.documentElement.clientHeight;
+    const scrollableHeight = docHeight - windowHeight;
+    
+    let progress = 0;
+    
+    if (scrollableHeight > 0) {
+        progress = (scrollY / scrollableHeight) * 100;
     }
     
-    window.addEventListener('scroll', onScrollProgress, { passive: true });
-    window.addEventListener('load', updateProgressBar);
-    window.addEventListener('resize', () => requestAnimationFrame(updateProgressBar));
+    // Clamp between 0-100
+    const clampedProgress = Math.min(Math.max(progress, 0), 100);
+    
+    // Use transform (GPU-accelerated, no reflow)
+    progressBar.style.transform = `scaleX(${clampedProgress / 100})`;
+    
+    progressTicking = false;
+}
 
+function onScrollProgress() {
+    if (!progressTicking) {
+        progressTicking = true;
+        requestAnimationFrame(updateProgressBar);
+    }
+}
+
+window.addEventListener('scroll', onScrollProgress, { passive: true });
+window.addEventListener('load', updateProgressBar);
+window.addEventListener('resize', () => {
+    requestAnimationFrame(updateProgressBar);
+});
     /* ==========================================================================
        SMOOTH SCROLL TO TOP
        ========================================================================== */
