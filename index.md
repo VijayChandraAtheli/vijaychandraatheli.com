@@ -2,11 +2,13 @@
 layout: home
 title: Home
 intro: |
-  ## Welcome to My Journal
+  ## Where Business Strategy Meets Data, Analytics & Salesforce
 
-  I'm Vijay Chandra Atheli, a business analyst and consultant specializing in Business Intelligence, Analytics, Data Strategy, and Salesforce solutions. This journal is where I share insights, perspectives, and lessons learned from working with organizations to transform their data capabilities and technology strategies.
+  ### Thoughts on Analytics, Salesforce, and Modern Business
 
-  Through years of consulting experience, I've seen how the right approach to analytics and technology can fundamentally change how businesses operate and compete. My goal here is to distill those experiences into actionable insights that help others navigate the complex landscape of modern business intelligence and enterprise technology.
+  I'm Vijay Chandra Atheli, a business analyst and consultant specializing in analytics, data strategy, and Salesforce solutions. This journal is where I share practical insights and lessons learned from real-world consulting work—bridging business needs with scalable technology.
 
-  Whether you're a fellow consultant, a business leader evaluating your analytics strategy, or a professional looking to deepen your understanding of these topics, I hope you find value in these perspectives.
+  Through my years in consulting and strategy, I've seen how thoughtful analytics and well-designed systems can fundamentally change how organizations operate and compete. Here, I focus on actionable ideas that help analysts, consultants, and business leaders make better decisions.
+
+  If you work at the intersection of business and technology, you're in the right place.
 ---

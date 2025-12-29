@@ -1,14 +1,14 @@
 # Site Settings
 title: Vijay Chandra Atheli
 tagline: Perspectives on Business & Technology
-description: Professional insights on Business Intelligence, Analytics, Data Strategy, Salesforce, and Consulting
+description: Professional insights on Analytics, Business Intelligence, Data Strategy, Salesforce, and Consulting
 url: https://vijaychandraatheli.com
 baseurl: ""
 
 # Author Information
 author:
   name: Vijay Chandra Atheli
-  email: vijaychandraatheli@gmail.com
+  email: athelivijay17@gmail.com
   linkedin: vijay-chandra-atheli
   github: VijayChandraAtheli
 
@@ -32,7 +32,7 @@ collections:
 
 # Categories (for navigation and organization)
 category_names:
-  business-intelligence: "Business Intelligence"
+  analytics-bi: "Analytics & BI"
   data-strategy: "Data Strategy"
   salesforce: "Salesforce"
   consulting-insights: "Consulting Insights"
@@ -46,15 +46,13 @@ grid_columns: 4
 # Format: "YYYY-MM-DD-article-slug"
 featured_posts:
   - "2025-12-28-welcome-to-my-journal"
-  - "2025-12-29-real-time-business-intelligence"
-  - "2025-12-30-data-strategy-essentials"
 
-# Navigation
+# Navigation (Reordered for narrative flow)
 navigation:
   - title: "Home"
     url: "/"
-  - title: "Business Intelligence"
-    url: "/business-intelligence/"
+  - title: "Analytics & BI"
+    url: "/analytics-bi/"
   - title: "Data Strategy"
     url: "/data-strategy/"
   - title: "Salesforce"
