@@ -4,7 +4,7 @@ title: "Supply Chains in the Age of Analytics"
 date: 2025-12-30
 category: analytics-bi
 tags: [supply chain, e-commerce, predictive analytics, optimization, retail analytics, operations research]
-excerpt: "Purchase orders are no longer just responses to demand—they're outputs of optimization. How retail algorithms and brand-supplier analytics co-create modern inventory management."
+excerpt: "Purchase orders are no longer just responses to demand—they're outputs of optimization."
 image: /images/posts/2025-12-30-supply-chain-algorithms/hero.jpg
 ---
 

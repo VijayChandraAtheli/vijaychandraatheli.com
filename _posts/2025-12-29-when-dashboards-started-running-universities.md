@@ -4,7 +4,7 @@ title: "When Dashboards Started Running Universities"
 date: 2025-12-29
 category: analytics-bi
 tags: [higher education, business intelligence, enrollment analytics, data-driven decisions, dashboards, edtech]
-excerpt: "How data-driven analytics quietly transformed higher education from tradition-bound institutions into operationally sophisticated systems guided by real-time metrics."
+excerpt: "Behind academic facades, dashboards now guide admissions, retention, and resource allocation."
 image: /images/posts/2025-12-29-dashboards-universities/hero.jpg
 ---
 
