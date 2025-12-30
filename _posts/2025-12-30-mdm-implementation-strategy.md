@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Strategic Choice Behind MDM Implementation"
+title: "Your MDM Style Reveals Your Business Strategy"
 date: 2025-12-30
 category: data-strategy
 tags: [master data management, data governance, enterprise architecture, data strategy, organizational change]
@@ -8,11 +8,11 @@ excerpt: "Every MDM style tells a story about how your organization defines trut
 image: /images/posts/2025-12-30-mdm-implementation-strategy/hero.jpg
 ---
 
-I've watched the same customer exist as five different people.
+During my consulting experience across fintech and insurance organizations, I've seen the same customer represented as multiple, conflicting records across CRM, billing, claims, and marketing systems.
 
-Not in theory. In practice. Across fintech platforms and insurance systems I've consulted for, where Jane Smith in CRM becomes J. Smith in billing, Jane A. Smith in claims, and two separate records for Jane Smith with slightly different addresses in the marketing automation system.
+In practice, this meant that Jane Smith in CRM appeared as J. Smith in billing, Jane A. Smith in claims, and as separate customer records with slightly different addresses in the marketing automation platform.
 
-Each system insisted it held the truth. None held the whole story.
+Each system claimed to be accurate. None provided a complete picture.
 
 And when leadership asked simple questions—*How many customers do we actually have? What's our real exposure? Who should we target next?*—the organization produced five answers. Then spent the next hour debating whose data was "correct."
 
@@ -36,7 +36,7 @@ But in practice, MDM forces uncomfortable questions:
 - How quickly should changes propagate?
 - What trade-offs between speed, autonomy, and control are acceptable?
 
-These aren't technical questions. They're **political** questions.
+These aren't technical questions. They're **political** questions—about power, ownership, and who controls truth in your organization.
 
 Defining truth means redefining authority. Systems that operated independently become interdependent. Teams that owned their data must now negotiate it. The data architect who proposes centralized MDM is really saying: *Your team no longer owns customer records.*
 
