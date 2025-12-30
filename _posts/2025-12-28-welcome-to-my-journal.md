@@ -10,7 +10,9 @@ image: /images/posts/2025-12-28-welcome/hero.jpg
 
 ## A New Beginning
 
-After years of working as a business analyst and consultant, I've accumulated countless insights, lessons learned, and perspectives on Business Intelligence, Analytics, Data Strategy, and Technology implementations. This journal is my attempt to organize those thoughts and share them with a broader audience.
+Over the last few years, through a mix of consulting work and hands-on analytics roles, I’ve started noticing recurring patterns in how organizations use (and misuse) data, technology, and systems. Some of these insights came from projects that worked well; others came from things that didn’t.
+
+This journal is my way of slowing down, reflecting on those experiences, and making sense of what I’m learning — across Business Intelligence, Analytics, Data Strategy, and technology implementations — while I’m still very much in the process of growing.
 
 ## Why Write?
 
