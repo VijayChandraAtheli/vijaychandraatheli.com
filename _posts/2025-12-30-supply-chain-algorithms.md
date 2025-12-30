@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The New Normal in Global Supply Chains: When Algorithms Replace Intuition"
+title: "Supply Chains in the Age of Analytics"
 date: 2025-12-30
 category: analytics-bi
 tags: [supply chain, e-commerce, predictive analytics, optimization, retail analytics, operations research]
