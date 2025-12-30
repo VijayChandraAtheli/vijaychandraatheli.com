@@ -15,11 +15,12 @@ layout: default
     <section class="featured-section">
         <h2 class="section-title">Featured Articles</h2>
         <div class="featured-grid">
-            {% for post_name in site.featured_posts limit:3 %}
+            {% for post_filename in site.featured_posts limit:3 %}
                 {% for post in site.posts %}
-                    {% assign post_slug = post.id | split: '/' | last %}
-                    {% if post_slug == post_name or post.slug == post_name %}
+                    {% assign post_basename = post.path | split: '/' | last | replace: '.md', '' | replace: '.markdown', '' %}
+                    {% if post_basename == post_filename %}
                         {% include article-card.html post=post %}
+                        {% break %}
                     {% endif %}
                 {% endfor %}
             {% endfor %}
