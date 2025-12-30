@@ -197,7 +197,7 @@ Analytics has become shared language across retail platforms and brand suppliers
 
 **Prescriptive analytics:** What decision balances cost, service, and risk?
 
-![Analytics framework progression from descriptive to predictive to prescriptive](/images/posts/2025-12-30-supply-chain-algorithms/analytics-framework.jpg)
+![Analytics framework progression from descriptive to predictive to prescriptive](/images/posts/2025-12-30-supply-chain-algorithms/analytics-framework.png)
 *The three-stage analytics framework that drives modern supply chain decision-making*
 
 Retail platforms run this loop at enormous scale. Brand suppliers run the same loop with different constraints and partial visibility. In the new normal, competitive advantage often comes from how fast and how coherently that loop operates—and whether both sides can interpret shared signals in compatible ways.
