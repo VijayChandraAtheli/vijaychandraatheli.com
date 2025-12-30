@@ -30,7 +30,7 @@ In marketplace-driven supply chains, the retailer sits closest to the consumer. 
 
 This enables strong demand forecasts.
 
-Brand suppliers sit closer to production constraints and upstream risk. They manage manufacturing partners (often overseas), container schedules, lead time variability, minimum order quantities, packaging constraints, supplier reliability, and cost curves. Success is measured not only by keeping retailers "in stock," but by **balancing inventory**—too little causes missed sales; too much ties up capital and increases obsolescence risk.
+Brand suppliers sit closer to production constraints and upstream risk. They manage manufacturing partners, container schedules, lead time variability, minimum order quantities, packaging constraints, supplier reliability, and cost curves. Success is measured not only by keeping retailers "in stock," but by **balancing inventory**—too little causes missed sales; too much ties up capital and increases obsolescence risk.
 
 Both sides depend on each other's signals, but those signals are incomplete:
 
