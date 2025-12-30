@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "MDM Implementation Style Is Not a Technical Decision—It's a Strategy Decision"
+title: "The Strategic Choice Behind MDM Implementation"
 date: 2025-12-30
 category: data-strategy
 tags: [master data management, data governance, enterprise architecture, data strategy, organizational change]
-excerpt: "Every MDM style tells a story about how your organization defines truth. Registry, consolidation, coexistence, or centralized—your choice reveals more about your business strategy than your technology stack."
+excerpt: "Every MDM style tells a story about how your organization defines truth."
 image: /images/posts/2025-12-30-mdm-implementation-strategy/hero.jpg
 ---
 
