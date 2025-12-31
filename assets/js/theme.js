@@ -1,6 +1,6 @@
 /* ==========================================================================
    VIJAY'S JOURNAL - SIMPLIFIED JAVASCRIPT
-   Clean sticky header, no progress bar
+   Clean sticky header, no progress bar - FIXED SCROLL JACKING
    ========================================================================== */
 
 (function() {
@@ -32,7 +32,7 @@
     }
 
     /* ==========================================================================
-       STICKY HEADER - CLEAN & SMOOTH
+       STICKY HEADER - FIXED SCROLL JACKING BUG
        ========================================================================== */
     
     const header = document.querySelector('header');
@@ -41,38 +41,40 @@
     const scrollThreshold = 100;
     let isSticky = false;
     let ticking = false;
+    let initialHeaderHeight = 0;
     
     // Create placeholder element
     const placeholder = document.createElement('div');
     placeholder.className = 'header-placeholder';
     header.parentNode.insertBefore(placeholder, header.nextSibling);
     
+    // Store initial header height on page load
+    window.addEventListener('load', function() {
+        initialHeaderHeight = header.getBoundingClientRect().height;
+    });
+    
     function makeSticky() {
         if (isSticky) return;
         isSticky = true;
         
-        const expandedHeight = header.getBoundingClientRect().height;
+        // Use stored initial height instead of calculating dynamically
+        const expandedHeight = initialHeaderHeight || header.getBoundingClientRect().height;
+        
+        // Set placeholder height BEFORE adding sticky class to prevent jump
         placeholder.style.height = expandedHeight + 'px';
         
         header.classList.add('sticky');
         document.body.classList.add('header-is-sticky');
-        
-        requestAnimationFrame(() => {
-            const stickyHeight = header.getBoundingClientRect().height;
-            placeholder.style.height = stickyHeight + 'px';
-        });
     }
     
     function removeSticky() {
         if (!isSticky) return;
         isSticky = false;
         
-        const stickyHeight = header.getBoundingClientRect().height;
-        placeholder.style.height = stickyHeight + 'px';
-        
         header.classList.remove('sticky');
         document.body.classList.remove('header-is-sticky');
         
+        // Remove placeholder height smoothly
         requestAnimationFrame(() => {
             placeholder.style.height = '0px';
         });
@@ -90,15 +92,28 @@
         ticking = false;
     }
     
+    // Use passive listener and throttle to prevent scroll jacking
+    let scrollTimeout;
     function onScroll() {
         if (!ticking) {
-            ticking = true;
-            requestAnimationFrame(handleSticky);
+            // Clear any pending timeout
+            clearTimeout(scrollTimeout);
+            
+            // Debounce scroll handling slightly
+            scrollTimeout = setTimeout(() => {
+                ticking = true;
+                requestAnimationFrame(handleSticky);
+            }, 10);
         }
     }
     
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('load', handleSticky);
+    
+    // Initial check after load
+    window.addEventListener('load', function() {
+        // Wait for layout to stabilize
+        setTimeout(handleSticky, 100);
+    });
 
     /* ==========================================================================
        SMOOTH SCROLL TO TOP
