@@ -1035,7 +1035,7 @@ body.dark-mode .article-footer {
 @media (max-width: 768px) {
     body {
         font-size: 18px;
-        padding-top: 140px;  /* INCREASED - accounts for stacked mobile header */
+        padding-top: 120px;  /* INCREASED - accounts for stacked mobile header */
     }
     
     .container {
