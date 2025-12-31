@@ -41,7 +41,7 @@ body {
     line-height: 1.4;
     font-size: 18px;
     transition: background 0.3s ease, color 0.3s ease;
-    padding-top: 85px;  /* Space for fixed header */
+    padding-top: 65px;  /* Space for fixed header - REDUCED */
 }
 
 /* ==========================================================================
@@ -76,45 +76,42 @@ body {
 }
 
 /* ==========================================================================
-   THEME TOGGLE
+   THEME TOGGLE - INTEGRATED INTO HEADER
    ========================================================================== */
 
 .theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 30px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     color: var(--dark);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    width: 45px;
-    height: 45px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10000;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
 }
 
 .theme-toggle:hover {
     transform: scale(1.08) rotate(15deg);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
-    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.9);
 }
 
 body.dark-mode .theme-toggle {
-    background: rgba(26, 26, 26, 0.9);
+    background: rgba(26, 26, 26, 0.6);
     color: var(--light);
     border-color: rgba(255, 255, 255, 0.1);
 }
 
 body.dark-mode .theme-toggle:hover {
-    background: rgba(26, 26, 26, 1);
+    background: rgba(26, 26, 26, 0.9);
 }
 
 /* ==========================================================================
@@ -131,7 +128,7 @@ header {
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid rgba(26, 26, 26, 0.08);
     z-index: 9999;
-    padding: 14px 40px;
+    padding: 10px 40px;  /* REDUCED from 14px */
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -176,8 +173,8 @@ header:hover::before {
 }
 
 .site-logo-circle {
-    width: 42px;
-    height: 42px;
+    width: 38px;   /* REDUCED from 42px */
+    height: 38px;  /* REDUCED from 42px */
     border-radius: 50%;
     background: linear-gradient(135deg, var(--accent), var(--gradient-end));
     display: flex;
@@ -185,7 +182,7 @@ header:hover::before {
     justify-content: center;
     color: white;
     font-family: 'Work Sans', sans-serif;
-    font-size: 13px;
+    font-size: 12px;  /* REDUCED from 13px */
     font-weight: 800;
     letter-spacing: 0.5px;
     text-decoration: none;
@@ -193,6 +190,7 @@ header:hover::before {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .site-logo-circle::before {
@@ -237,11 +235,11 @@ nav a {
     color: var(--dark);
     text-decoration: none;
     font-family: 'Work Sans', sans-serif;
-    font-size: 11px;
+    font-size: 10.5px;  /* REDUCED from 11px */
     font-weight: 600;
     letter-spacing: 0.8px;
     text-transform: uppercase;
-    padding: 8px 16px;
+    padding: 7px 14px;  /* REDUCED from 8px 16px */
     border-radius: 8px;
     position: relative;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -909,7 +907,7 @@ body.dark-mode .article-footer {
 
 .page {
     animation: fadeIn 1s ease;
-    margin-top: 0;
+    margin-top: 30px;  /* ADDED - space below fixed header */
     padding-top: 0;
 }
 
@@ -929,6 +927,7 @@ body.dark-mode .article-footer {
     margin-top: 0;
 }
 
+/* Show subtitle on category pages - it was hidden incorrectly */
 .page-subtitle {
     font-size: 19px;
     color: var(--gray);
@@ -1026,7 +1025,7 @@ body.dark-mode .article-footer {
 @media (max-width: 768px) {
     body {
         font-size: 18px;
-        padding-top: 130px;
+        padding-top: 115px;  /* REDUCED for smaller header */
     }
     
     .container {
@@ -1034,13 +1033,13 @@ body.dark-mode .article-footer {
     }
     
     header {
-        padding: 12px 20px;
+        padding: 10px 20px;  /* Consistent with desktop */
     }
     
     .header-content {
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        gap: 10px;
     }
     
     .site-logo-circle {
@@ -1061,11 +1060,9 @@ body.dark-mode .article-footer {
     }
     
     .theme-toggle {
-        top: 14px;
-        right: 20px;
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
     }
     
     .articles-grid,
