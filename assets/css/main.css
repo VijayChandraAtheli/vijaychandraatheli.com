@@ -165,7 +165,7 @@ body.dark-mode .site-header {
     align-items: center;
     justify-content: space-between;
     gap: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 5px;
 }
 
 /* VCA Circle Logo */
