@@ -27,7 +27,7 @@
     function updateThemeIcon(theme) {
         const icon = document.getElementById('themeIcon');
         if (icon) {
-            icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+            icon.textContent = theme === 'dark' ? '◑' : '◐';
         }
     }
 
