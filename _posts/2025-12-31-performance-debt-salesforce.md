@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Performance Debt in Salesforce"
-date: 2026-01-01
+date: 2025-12-31
 category: salesforce
 tags: [salesforce, performance, technical debt, enterprise architecture, governance]
 excerpt: "An enterprise risk no one owns, where small experience delays quietly compound into systemic cost."
-image: /images/posts/2026-01-01-performance-debt-salesforce/hero.jpg
+image: /images/posts/2025-12-31-performance-debt-salesforce/hero.jpg
 ---
 
 Salesforce performance rarely fails loudly.
