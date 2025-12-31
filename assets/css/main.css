@@ -42,7 +42,7 @@ body {
     line-height: 1.4;
     font-size: 18px;
     transition: background 0.3s ease, color 0.3s ease;
-    padding-top: 70px;  /* UNIFIED - consistent space for fixed header */
+    padding-top: 60px;  /* REDUCED - tighter spacing for ~58px header */
 }
 
 /* ==========================================================================
@@ -981,7 +981,7 @@ body.dark-mode .article-footer {
 
 @media (max-width: 992px) {
     body {
-        padding-top: 70px;  /* CONSISTENT - same as desktop */
+        padding-top: 60px;  /* CONSISTENT - same as desktop */
     }
     
     .container {
