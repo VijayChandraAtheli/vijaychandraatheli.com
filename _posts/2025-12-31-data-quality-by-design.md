@@ -74,8 +74,6 @@ Architectural questions that matter more than most teams admit:
 
 When these answers remain fuzzy, Salesforce still "works," but quality erodes invisibly: duplicated identities, fragile rollup summaries, and reports that require interpretive caveats.
 
-> **Business impact:** A clean data model lowers downstream cost—simpler reporting, fewer transformations, and less debate about "what the number really means."
-
 ### Layer 2: Controlled Data Entry (Where Most Quality Is Won—or Lost)
 
 Most Salesforce data enters through the user interface. Field design and entry controls are therefore decisive in shaping long-term quality outcomes.
@@ -90,15 +88,11 @@ A better approach is progressive enforcement:
 - **Middle stages** → gather what's needed for handoffs and routing
 - **Later stages** → enforce what's needed to forecast, approve, or execute
 
-> **Business impact:** Adoption stays high while decision-critical data is protected at the moment it matters.
-
 #### Picklists Over Free Text
 
 Any field that feeds reports, automation, or integrations should be structured. Free text feels flexible during data entry; at scale, it fragments semantic meaning and creates analytical chaos.
 
 Picklists, global value sets, and field dependencies enforce consistency—ensuring that when the business says "Enterprise," it means the same thing in every context, every time.
-
-> **Business impact:** Consistent segmentation enables trustworthy analytics without constant normalization and cleansing.
 
 #### Validation Rules as Encoded Policy
 
@@ -109,8 +103,6 @@ Validation rules are business policies written in logic. The best ones:
 - Prevent expensive downstream errors before they propagate
 
 Error messages should read like product microcopy, not system logs. When users understand the "why," compliance rises without enforcement overhead.
-
-> **Business impact:** Less rework, safer automation, and more credible reporting across the organization.
 
 ### Layer 3: Duplicate Management (Identity Is Everything)
 
@@ -130,8 +122,6 @@ A scalable strategy I've seen work:
 
 Duplicates rarely come from user negligence alone. They emerge from web-to-lead forms, data imports, and integrations that lack stable external keys.
 
-> **Business impact:** Clean identity protects revenue attribution, customer experience coherence, and executive trust in metrics.
-
 ### Layer 4: Integration Architecture (Where Quality Scales—or Explodes)
 
 Long-term data quality failures are often integration failures in disguise. When Salesforce connects to other systems, architectural decisions determine whether quality compounds or collapses.
@@ -147,8 +137,6 @@ Every critical field needs an owner: where it originates, where it's allowed to 
 If integrations insert records without stable external IDs, Salesforce will create duplicates indefinitely. No amount of manual cleanup will solve a structural problem.
 
 External IDs, upserts, and canonical identity mapping are non-negotiable at scale.
-
-> **Business impact:** Clean integrations prevent exponential cleanup costs and preserve consistency across the entire customer lifecycle.
 
 ### Layer 5: Governance That Enables—Not Slows—Delivery
 
@@ -166,8 +154,6 @@ A simple operating model that works:
 - **Platform Owner** — implements technical enforcement
 
 Publish a concise "Data Rules of the Road" covering required fields by stage, duplicate handling protocols, and change request procedures. Keep it short enough that people actually read it.
-
-> **Business impact:** Fewer workarounds, faster change velocity, and sustained trust as the organization scales.
 
 ---
 
@@ -195,6 +181,40 @@ If I were implementing this architecture in a real organization, I'd sequence it
 - Review monthly with business stakeholders, not just admins
 
 This approach avoids turning data quality into a perpetual cleanup program. It builds quality into the system's operating rhythm.
+
+---
+
+## The Business Impact: What These Layers Actually Protect
+
+When these five architectural layers work together, they deliver tangible business outcomes that extend far beyond clean data:
+
+### From Layer 1: Clean Data Models
+
+A well-designed data model reduces downstream cost through simpler reporting, fewer data transformations, and elimination of debates about "what the number really means." Teams spend less time reconciling conflicting definitions and more time acting on insights.
+
+### From Layer 2: Controlled Entry
+
+Progressive enforcement keeps user adoption high while protecting decision-critical data at the moment it matters. Sales teams don't abandon records due to excessive requirements, yet forecasts remain reliable because key fields are complete when they need to be.
+
+### From Layer 2: Structured Fields
+
+Consistent segmentation through picklists enables trustworthy analytics without constant normalization and cleansing. Marketing can confidently target enterprise accounts knowing the definition is consistent across all records and systems.
+
+### From Layer 2: Smart Validation
+
+Less rework, safer automation, and more credible reporting emerge when validation rules prevent errors before they propagate. Support teams spend less time fixing data issues and more time serving customers.
+
+### From Layer 3: Identity Management
+
+Clean identity protects revenue attribution, enables coherent customer experiences, and preserves executive trust in metrics. When every customer has exactly one record, win rates and pipeline forecasts become defensible rather than directional.
+
+### From Layer 4: Integration Design
+
+Clean integrations prevent exponential cleanup costs and preserve consistency across the entire customer lifecycle. Data flows seamlessly between marketing automation, CRM, and support systems without creating duplicates or conflicts.
+
+### From Layer 5: Lightweight Governance
+
+Fewer workarounds, faster change velocity, and sustained trust emerge as the organization scales. Teams don't route around the system because governance enables rather than blocks their work.
 
 ---
 
