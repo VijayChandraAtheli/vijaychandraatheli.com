@@ -7,6 +7,9 @@
             {% for item in site.navigation %}
                 <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
             {% endfor %}
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+                <span id="themeIcon">🌙</span>
+            </button>
         </nav>
     </div>
 </header>
