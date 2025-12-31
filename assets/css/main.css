@@ -476,9 +476,11 @@ body.dark-mode footer {
     gap: 22px;
 }
 
-/* Category pages use 3 columns instead of 4 */
-.page .articles-grid {
-    grid-template-columns: repeat(3, 1fr);
+/* Category pages: 3 columns on desktop, responsive on mobile */
+@media (min-width: 1201px) {
+    .page .articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 /* ==========================================================================
