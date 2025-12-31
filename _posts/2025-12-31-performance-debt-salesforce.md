@@ -20,7 +20,7 @@ Drawing from implementations across FinTech and Insurance, I've repeatedly seen 
 
 This article explores performance debt as a distinct and under-recognized enterprise risk in Salesforce—particularly in regulated, high-volume environments.
 
-![Performance debt visualization showing layers of system complexity](/images/posts/2026-01-01-performance-debt-salesforce/performance-debt-salesforce.png)
+![Performance debt visualization showing layers of system complexity](/images/posts/2025-12-31-performance-debt-salesforce/performance-debt-salesforce.png)
 *The invisible accumulation: How performance debt layers into enterprise systems*
 
 ## What Is Performance Debt?
