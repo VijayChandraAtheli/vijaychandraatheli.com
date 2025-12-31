@@ -8,17 +8,13 @@ excerpt: "An enterprise risk no one owns, where small experience delays quietly 
 image: /images/posts/2025-12-31-performance-debt-salesforce/hero.jpg
 ---
 
-Salesforce performance rarely fails loudly.
+Salesforce performance rarely fails loudly. There are no dramatic outages, no red dashboards, no incident bridges called at 2 AM. Instead, performance debt accumulates quietly—through hesitation, workarounds, and lowered expectations. Records still save and reports still run, but the system no longer flows the way it once did.
 
-There are no dramatic outages. No red dashboards. No incident bridges.
+What appears as a few extra seconds per transaction is often dismissed as "acceptable." Yet over time, those seconds compound into something far more expensive than slow systems: lost productivity, eroded trust, and degraded decision-making. The real cost isn't measured in milliseconds—it's measured in the subtle shifts in how people work when they no longer trust the platform to keep pace with their thinking.
 
-Instead, performance debt accumulates quietly—through hesitation, workarounds, and lowered expectations. Records still save. Reports still run. But the system no longer flows.
+Drawing from implementations across FinTech and Insurance, I've repeatedly seen performance issues framed as technical problems requiring technical solutions. But in nearly every case, the root cause was elsewhere: **governance gaps, architectural debt, and the absence of clear ownership**. Performance degradation is rarely a failure of technology—it's a failure of systems thinking.
 
-What appears as a few extra seconds is often dismissed as "acceptable." Over time, those seconds compound into something far more expensive: lost productivity, eroded trust, and degraded decision-making.
-
-Drawing from implementations across FinTech and Insurance, I've repeatedly seen performance issues framed as technical problems—when they were actually **governance, design, and ownership problems**.
-
-This article explores performance debt as a distinct and under-recognized enterprise risk within Salesforce implementations—particularly in regulated, high-volume environments.
+This article explores performance debt as a distinct and under-recognized enterprise risk within Salesforce implementations, particularly in regulated, high-volume environments where the stakes of slowness extend beyond user frustration into compliance risk, operational friction, and strategic misalignment.
 
 ![Performance debt visualization showing layers of system complexity](/images/posts/2025-12-31-performance-debt-salesforce/performance-debt-salesforce.png)
 *The invisible accumulation: How performance debt layers into enterprise systems*
