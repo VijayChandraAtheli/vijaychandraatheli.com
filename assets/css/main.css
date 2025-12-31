@@ -908,14 +908,14 @@ body.dark-mode .article-footer {
 
 .page {
     animation: fadeIn 1s ease;
-    margin-top: 0;  /* REMOVED - body padding handles spacing */
-    padding-top: 0;
+    margin-top: 0;
+    padding-top: 20px;  /* ADDED - extra space for page title to clear header */
 }
 
 .page-header {
     text-align: center;
     margin-bottom: 25px;
-    margin-top: 0;  /* REMOVED - body padding handles spacing */
+    margin-top: 0;
     padding-top: 0;
 }
 
