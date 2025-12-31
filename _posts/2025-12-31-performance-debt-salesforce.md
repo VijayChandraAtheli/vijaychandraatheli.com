@@ -210,15 +210,15 @@ Performance debt is rarely approved. **It is absorbed.**
 
 ## Performance Debt vs Technical Debt
 
-The distinction matters.
+The distinction matters:
 
 | Dimension | Performance Debt | Technical Debt |
 |-----------|------------------|----------------|
-| **Visibility** | Users feel it daily | Engineers feel it during change |
-| **Impact timing** | Immediate, cumulative | Deferred, explosive |
-| **Primary cost** | Productivity and trust | Velocity and innovation |
-| **Typical response** | Workarounds | Avoidance |
-| **Risk** | Cultural erosion | Structural fragility |
+| Visibility | Users feel it daily | Engineers feel it during change |
+| Impact timing | Immediate, cumulative | Deferred, explosive |
+| Primary cost | Productivity and trust | Velocity and innovation |
+| Typical response | Workarounds | Avoidance |
+| Risk | Cultural erosion | Structural fragility |
 
 Or more simply:
 
