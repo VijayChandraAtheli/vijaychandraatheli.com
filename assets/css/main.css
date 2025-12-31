@@ -116,10 +116,10 @@ body.dark-mode .theme-toggle:hover {
 }
 
 /* ==========================================================================
-   PREMIUM GLASSY HEADER
+   PREMIUM GLASSY HEADER - SPECIFIC SELECTOR
    ========================================================================== */
 
-header {
+.site-header {
     position: fixed;
     top: 0;
     left: 0;
@@ -133,12 +133,12 @@ header {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body.dark-mode header {
+body.dark-mode .site-header {
     background: rgba(10, 10, 10, 0.85);
     border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
-header::before {
+.site-header::before {
     content: '';
     position: absolute;
     top: 0;
@@ -154,7 +154,7 @@ header::before {
     transition: opacity 0.3s ease;
 }
 
-header:hover::before {
+.site-header:hover::before {
     opacity: 1;
 }
 
@@ -908,7 +908,7 @@ body.dark-mode .article-footer {
 
 .page {
     animation: fadeIn 1s ease;
-    margin-top: 50px;  /* NUCLEAR FIX - massive space to ensure title is visible */
+    margin-top: 0;  /* REMOVED - no longer needed with specific .site-header selector */
     padding-top: 0;
 }
 
@@ -917,6 +917,7 @@ body.dark-mode .article-footer {
     margin-bottom: 25px;
     margin-top: 0;
     padding-top: 0;
+    position: static;  /* ADDED - ensure it's not affected by any fixed positioning */
 }
 
 .page-title {
@@ -926,8 +927,6 @@ body.dark-mode .article-footer {
     letter-spacing: -2px;
     margin-bottom: 12px;
     margin-top: 0;
-    color: var(--dark);  /* ADDED - ensure it's visible */
-    display: block;  /* ADDED - force display */
 }
 
 .page-subtitle {
@@ -989,7 +988,7 @@ body.dark-mode .article-footer {
         padding: 0 30px;
     }
     
-    header {
+    .site-header {
         padding: 10px 30px;
     }
     
@@ -1028,7 +1027,7 @@ body.dark-mode .article-footer {
     }
     
     .page {
-        margin-top: 40px;
+        margin-top: 0;  /* REMOVED - not needed */
     }
 }
 
@@ -1042,7 +1041,7 @@ body.dark-mode .article-footer {
         padding: 0 20px;
     }
     
-    header {
+    .site-header {
         padding: 10px 20px;
     }
     
@@ -1136,7 +1135,7 @@ body.dark-mode .article-footer {
     }
     
     .page {
-        margin-top: 30px;
+        margin-top: 0;  /* REMOVED - not needed */
     }
 }
 
