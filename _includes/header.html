@@ -1,9 +1,9 @@
 <header>
-    <div class="container">
-        <h1 class="site-title">
-            <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
-        </h1>
-        <p class="site-tagline">{{ site.tagline }}</p>
+    <div class="header-content">
+        <div class="header-left">
+            <a href="{{ '/' | relative_url }}" class="site-logo-circle">VCA</a>
+            <span class="site-tagline-compact">Understanding Business & Tech Together</span>
+        </div>
         <nav>
             {% for item in site.navigation %}
                 <a href="{{ item.url | relative_url }}">{{ item.title }}</a>

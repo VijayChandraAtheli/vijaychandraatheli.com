@@ -1,6 +1,6 @@
 /* ==========================================================================
-   VIJAY'S JOURNAL - FINAL PRODUCTION STYLESHEET
-   Perfect sticky header, ultra-compact spacing, magazine polish
+   VIJAY'S JOURNAL - COMFORTABLE COMPACT HEADER
+   Fixed header with breathing room, VCA circle, modern tagline
    ========================================================================== */
 
 /* ==========================================================================
@@ -41,6 +41,7 @@ body {
     line-height: 1.4;
     font-size: 18px;
     transition: background 0.3s ease, color 0.3s ease;
+    padding-top: 100px;  /* Space for fixed header */
 }
 
 /* ==========================================================================
@@ -80,7 +81,7 @@ body {
 
 .theme-toggle {
     position: fixed;
-    top: 30px;
+    top: 25px;
     right: 30px;
     background: var(--dark);
     color: var(--light);
@@ -94,7 +95,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 10000;
-    transition: top 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
@@ -108,168 +109,96 @@ body.dark-mode .theme-toggle {
     color: var(--dark);
 }
 
-body.header-is-sticky .theme-toggle {
-    top: 70px;
-}
-
 /* ==========================================================================
-   HEADER - REDUCED VERTICAL SPACE (~7% reduction)
+   FIXED COMFORTABLE COMPACT HEADER
    ========================================================================== */
 
 header {
-    max-width: 100%;
-    padding: 30px 40px 18px 40px;  /* REDUCED from 40px 40px 25px 40px */
-    margin: 0 0 10px 0;              /* REDUCED from 0 0 15px 0 */
-    border-bottom: 2px solid var(--dark);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     background: var(--light);
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;  /* FIXED - ensures title and tagline stay centered */
-    transition: padding 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    border-bottom: 2px solid var(--dark);
+    z-index: 9999;
+    padding: 20px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
 
 body.dark-mode header {
     border-bottom-color: #333;
     background: var(--light);
-}
-
-.header-placeholder {
-    width: 100%;
-    height: 0;
-    transition: height 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-    overflow: hidden;
-}
-
-header.sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 14px 40px;
-    margin: 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    z-index: 9999;
-    border-bottom: 1px solid var(--border);
-    flex-direction: row;
-    justify-content: center;
-}
-
-body.dark-mode header.sticky {
     box-shadow: 0 2px 10px rgba(255,255,255,0.05);
-    border-bottom-color: #333;
 }
 
-/* Title - smooth collapse */
-.site-title {
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+}
+
+/* Logo Circle and Tagline - Left Side */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.site-logo-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--gradient-end));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
     font-family: 'Work Sans', sans-serif;
-    font-size: 48px;
+    font-size: 15px;
     font-weight: 800;
-    margin-bottom: 5px;  /* REDUCED from 8px */
-    letter-spacing: -2px;
-    opacity: 1;
-    max-height: 200px;
-    transition: opacity 0.25s ease, 
-                max-height 0.3s cubic-bezier(0.23, 1, 0.32, 1),
-                margin 0.25s ease;
-    overflow: hidden;
-    order: 1;
-}
-
-.site-title a {
-    color: var(--dark);
+    letter-spacing: 0.5px;
     text-decoration: none;
+    box-shadow: 0 3px 12px rgba(214, 52, 71, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
 }
 
-header.sticky .site-title {
-    opacity: 0;
-    max-height: 0;
-    margin: 0;
+.site-logo-circle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 18px rgba(214, 52, 71, 0.35);
 }
 
-/* Tagline - smooth collapse */
-.site-tagline {
-    font-family: 'Crimson Pro', serif;
-    font-size: 16px;
-    color: var(--gray);
-    margin-bottom: 13px;  /* REDUCED from 18px */
-    font-style: italic;
-    letter-spacing: 0.3px;
-    line-height: 1.4;
-    opacity: 1;
-    max-height: 100px;
-    transition: opacity 0.25s ease,
-                max-height 0.3s cubic-bezier(0.23, 1, 0.32, 1),
-                margin 0.25s ease;
-    overflow: hidden;
-    order: 2;
-}
-
-header.sticky .site-tagline {
-    opacity: 0;
-    max-height: 0;
-    margin: 0;
-}
-
-/* VC Logo - fades in when sticky */
-header::before {
-    content: '';
+.site-tagline-compact {
     font-family: 'Work Sans', sans-serif;
-    font-size: 17px;
-    font-weight: 800;
+    font-size: 16px;
     color: var(--dark);
-    letter-spacing: 1px;
-    opacity: 0;
-    width: 0;
-    margin-right: 0;
-    transition: opacity 0.3s ease 0.1s,
-                width 0.3s ease,
-                margin 0.3s ease;
-    overflow: hidden;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
     white-space: nowrap;
-    order: 0;
 }
 
-header.sticky::before {
-    content: 'VC';
-    opacity: 1;
-    width: auto;
-    margin-right: 20px;
-}
-
-/* Navigation */
+/* Navigation - Right Side */
 nav {
     display: flex;
-    gap: 25px;
-    justify-content: center;
-    padding-top: 11px;  /* REDUCED from 16px */
-    flex-wrap: wrap;
-    transition: padding 0.3s cubic-bezier(0.23, 1, 0.32, 1),
-                gap 0.3s ease;
-    order: 3;
-}
-
-header.sticky nav {
-    padding-top: 0;
-    gap: 18px;
-    flex-wrap: nowrap;
+    gap: 24px;
+    align-items: center;
 }
 
 nav a {
     color: var(--dark);
     text-decoration: none;
     font-family: 'Work Sans', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
     position: relative;
-    transition: color 0.3s ease, font-size 0.3s ease;
-}
-
-header.sticky nav a {
-    font-size: 11px;
+    transition: color 0.3s ease;
+    white-space: nowrap;
 }
 
 nav a::after {
@@ -290,6 +219,7 @@ nav a:hover {
 nav a:hover::after {
     width: 100%;
 }
+
 /* ==========================================================================
    FOOTER
    ========================================================================== */
@@ -629,7 +559,7 @@ body.dark-mode .article-card:hover {
 }
 
 .article-header {
-    margin-bottom: 22px;  /* REDUCED from 28px - tighter spacing to content */
+    margin-bottom: 22px;
 }
 
 .category-badge {
@@ -649,11 +579,11 @@ body.dark-mode .article-card:hover {
 
 .article-title {
     font-family: 'Work Sans', sans-serif;
-    font-size: 38px;  /* REDUCED from 50px - allows title + content above fold */
+    font-size: 38px;
     font-weight: 800;
-    line-height: 1.15;  /* INCREASED from 1.08 - better readability for multi-line */
-    letter-spacing: -1.5px;  /* REDUCED from -2px - less aggressive */
-    margin-bottom: 14px;  /* REDUCED from 18px */
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    margin-bottom: 14px;
     animation: slideIn 0.8s ease;
 }
 
@@ -669,10 +599,10 @@ body.dark-mode .article-card:hover {
 }
 
 .article-subtitle {
-    font-size: 19px;  /* REDUCED from 22px - proportional to title reduction */
+    font-size: 19px;
     color: var(--gray);
     line-height: 1.4;
-    margin-bottom: 24px;  /* REDUCED from 28px */
+    margin-bottom: 24px;
     font-weight: 400;
 }
 
@@ -734,7 +664,7 @@ body.dark-mode .article-meta {
    ========================================================================== */
 
 .article-content {
-    margin: 18px 0 40px 0;  /* REDUCED from 28px → 22px → 18px - minimal gap to first paragraph */
+    margin: 18px 0 40px 0;
 }
 
 .article-content p {
@@ -986,25 +916,38 @@ body.dark-mode .article-footer {
 }
 
 @media (max-width: 992px) {
+    body {
+        padding-top: 90px;
+    }
+    
     .container {
         padding: 0 30px;
     }
     
     header {
-        padding: 28px 30px 16px 30px;  /* REDUCED for tablet */
+        padding: 18px 30px;
     }
     
-    header.sticky {
-        padding: 12px 30px;
+    .header-content {
+        gap: 25px;
     }
     
-    .site-title {
-        font-size: 38px;
-        letter-spacing: -1.5px;
+    .site-logo-circle {
+        width: 42px;
+        height: 42px;
+        font-size: 14px;
     }
     
-    .site-tagline {
-        font-size: 15px;
+    .site-tagline-compact {
+        font-size: 14px;
+    }
+    
+    nav {
+        gap: 18px;
+    }
+    
+    nav a {
+        font-size: 11px;
     }
     
     .articles-grid,
@@ -1014,7 +957,7 @@ body.dark-mode .article-footer {
     }
     
     .article-title {
-        font-size: 34px;  /* REDUCED proportionally from 38px */
+        font-size: 34px;
         letter-spacing: -1.3px;
     }
 }
@@ -1022,6 +965,7 @@ body.dark-mode .article-footer {
 @media (max-width: 768px) {
     body {
         font-size: 18px;
+        padding-top: 145px; /* More space for stacked header */
     }
     
     .container {
@@ -1029,57 +973,45 @@ body.dark-mode .article-footer {
     }
     
     header {
-        padding: 22px 20px 14px 20px;  /* REDUCED for mobile */
-        margin-bottom: 10px;            /* REDUCED for mobile */
+        padding: 16px 20px;
     }
     
-    header.sticky {
-        padding: 12px 20px;
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
     }
     
-    header.sticky::before {
-        font-size: 15px;
-        margin-right: 12px;
+    .header-left {
+        gap: 14px;
     }
     
-    header.sticky nav {
-        gap: 10px;
+    .site-logo-circle {
+        width: 40px;
+        height: 40px;
+        font-size: 13px;
     }
     
-    header.sticky nav a {
-        font-size: 10px;
-    }
-    
-    .site-title {
-        font-size: 28px;
-        letter-spacing: -1px;
-        margin-bottom: 4px;  /* REDUCED for mobile */
-    }
-    
-    .site-tagline {
-        font-size: 14px;
-        margin-bottom: 10px;  /* REDUCED for mobile */
+    .site-tagline-compact {
+        font-size: 13px;
     }
     
     nav {
         gap: 14px;
-        padding-top: 9px;  /* REDUCED for mobile */
+        flex-wrap: wrap;
+        width: 100%;
     }
     
     nav a {
-        font-size: 11px;
+        font-size: 10px;
     }
     
     .theme-toggle {
-        top: 20px;
+        top: 16px;
         right: 20px;
         width: 45px;
         height: 45px;
         font-size: 18px;
-    }
-    
-    body.header-is-sticky .theme-toggle {
-        top: 65px;
     }
     
     .articles-grid,
@@ -1089,12 +1021,12 @@ body.dark-mode .article-footer {
     }
     
     .article-title {
-        font-size: 30px;  /* REDUCED proportionally from 32px */
+        font-size: 30px;
         letter-spacing: -1px;
     }
     
     .article-subtitle {
-        font-size: 17px;  /* REDUCED proportionally from 18px */
+        font-size: 17px;
     }
     
     .article-content h2 {
@@ -1144,12 +1076,18 @@ body.dark-mode .article-footer {
         font-size: 17px;
     }
     
-    .site-title {
-        font-size: 24px;
+    .site-logo-circle {
+        width: 38px;
+        height: 38px;
+        font-size: 12px;
+    }
+    
+    .site-tagline-compact {
+        font-size: 12px;
     }
     
     .article-title {
-        font-size: 26px;  /* REDUCED proportionally from 28px */
+        font-size: 26px;
     }
     
     .card-title {

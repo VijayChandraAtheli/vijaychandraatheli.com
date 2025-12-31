@@ -1,6 +1,6 @@
 /* ==========================================================================
-   VIJAY'S JOURNAL - SIMPLIFIED JAVASCRIPT
-   Clean sticky header, no progress bar - FIXED SCROLL JACKING
+   VIJAY'S JOURNAL - SIMPLE JAVASCRIPT
+   No sticky header, just dark mode and utilities
    ========================================================================== */
 
 (function() {
@@ -32,91 +32,7 @@
     }
 
     /* ==========================================================================
-       STICKY HEADER - FIXED SCROLL JACKING BUG
-       ========================================================================== */
-    
-    const header = document.querySelector('header');
-    if (!header) return;
-    
-    const scrollThreshold = 100;
-    let isSticky = false;
-    let ticking = false;
-    let initialHeaderHeight = 0;
-    
-    // Create placeholder element
-    const placeholder = document.createElement('div');
-    placeholder.className = 'header-placeholder';
-    header.parentNode.insertBefore(placeholder, header.nextSibling);
-    
-    // Store initial header height on page load
-    window.addEventListener('load', function() {
-        initialHeaderHeight = header.getBoundingClientRect().height;
-    });
-    
-    function makeSticky() {
-        if (isSticky) return;
-        isSticky = true;
-        
-        // Use stored initial height instead of calculating dynamically
-        const expandedHeight = initialHeaderHeight || header.getBoundingClientRect().height;
-        
-        // Set placeholder height BEFORE adding sticky class to prevent jump
-        placeholder.style.height = expandedHeight + 'px';
-        
-        header.classList.add('sticky');
-        document.body.classList.add('header-is-sticky');
-    }
-    
-    function removeSticky() {
-        if (!isSticky) return;
-        isSticky = false;
-        
-        header.classList.remove('sticky');
-        document.body.classList.remove('header-is-sticky');
-        
-        // Remove placeholder height smoothly
-        requestAnimationFrame(() => {
-            placeholder.style.height = '0px';
-        });
-    }
-    
-    function handleSticky() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > scrollThreshold) {
-            makeSticky();
-        } else {
-            removeSticky();
-        }
-        
-        ticking = false;
-    }
-    
-    // Use passive listener and throttle to prevent scroll jacking
-    let scrollTimeout;
-    function onScroll() {
-        if (!ticking) {
-            // Clear any pending timeout
-            clearTimeout(scrollTimeout);
-            
-            // Debounce scroll handling slightly
-            scrollTimeout = setTimeout(() => {
-                ticking = true;
-                requestAnimationFrame(handleSticky);
-            }, 10);
-        }
-    }
-    
-    window.addEventListener('scroll', onScroll, { passive: true });
-    
-    // Initial check after load
-    window.addEventListener('load', function() {
-        // Wait for layout to stabilize
-        setTimeout(handleSticky, 100);
-    });
-
-    /* ==========================================================================
-       SMOOTH SCROLL TO TOP
+       SMOOTH SCROLL TO TOP (Press 'T' key)
        ========================================================================== */
     
     document.addEventListener('keydown', function(e) {
@@ -130,7 +46,7 @@
     });
 
     /* ==========================================================================
-       EXTERNAL LINKS
+       EXTERNAL LINKS - Open in New Tab
        ========================================================================== */
     
     document.addEventListener('DOMContentLoaded', function() {
@@ -159,16 +75,13 @@
        ========================================================================== */
     
     window.addEventListener('beforeprint', function() {
-        document.body.classList.remove('dark-mode', 'header-is-sticky');
-        header.classList.remove('sticky');
-        placeholder.style.height = '0px';
+        document.body.classList.remove('dark-mode');
     });
     
     window.addEventListener('afterprint', function() {
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
         }
-        handleSticky();
     });
 
 })();
