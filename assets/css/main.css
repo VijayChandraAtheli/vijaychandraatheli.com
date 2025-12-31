@@ -920,7 +920,7 @@ body.dark-mode .article-footer {
 
 .page-title {
     font-family: 'Work Sans', sans-serif;
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 800;
     letter-spacing: -2px;
     margin-bottom: 12px;
@@ -929,7 +929,7 @@ body.dark-mode .article-footer {
 
 /* Show subtitle on category pages - it was hidden incorrectly */
 .page-subtitle {
-    font-size: 13px;
+    font-size: 15px;
     color: var(--gray);
     line-height: 1.35;
 }
