@@ -1,7 +1,7 @@
 /* ==========================================================================
    VIJAY'S JOURNAL - PREMIUM GLASSY HEADER
    Glassmorphism, subtle animations, VCA circle only
-   UNIFIED FIX - Consistent spacing on all pages and devices
+   FINAL COMPLETE VERSION - All fixes applied
    ========================================================================== */
 
 /* ==========================================================================
@@ -908,8 +908,8 @@ body.dark-mode .article-footer {
 
 .page {
     animation: fadeIn 1s ease;
-    margin-top: 0;
-    padding-top: 20px;  /* ADDED - extra space for page title to clear header */
+    margin-top: 50px;  /* NUCLEAR FIX - massive space to ensure title is visible */
+    padding-top: 0;
 }
 
 .page-header {
@@ -921,15 +921,17 @@ body.dark-mode .article-footer {
 
 .page-title {
     font-family: 'Work Sans', sans-serif;
-    font-size: 36px;  /* REDUCED from 42px (14% smaller) */
+    font-size: 36px;
     font-weight: 800;
     letter-spacing: -2px;
     margin-bottom: 12px;
     margin-top: 0;
+    color: var(--dark);  /* ADDED - ensure it's visible */
+    display: block;  /* ADDED - force display */
 }
 
 .page-subtitle {
-    font-size: 16px;  /* REDUCED from 19px (16% smaller) */
+    font-size: 16px;
     color: var(--gray);
     line-height: 1.35;
 }
@@ -1022,7 +1024,11 @@ body.dark-mode .article-footer {
     }
     
     .page-title {
-        font-size: 32px;  /* Proportional reduction */
+        font-size: 32px;
+    }
+    
+    .page {
+        margin-top: 40px;
     }
 }
 
@@ -1122,11 +1128,15 @@ body.dark-mode .article-footer {
     }
     
     .page-title {
-        font-size: 28px;  /* Proportional reduction for mobile */
+        font-size: 28px;
     }
     
     .page-subtitle {
-        font-size: 14px;  /* Proportional reduction for mobile */
+        font-size: 14px;
+    }
+    
+    .page {
+        margin-top: 30px;
     }
 }
 
