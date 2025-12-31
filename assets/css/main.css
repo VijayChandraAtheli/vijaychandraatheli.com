@@ -1,6 +1,7 @@
 /* ==========================================================================
    VIJAY'S JOURNAL - PREMIUM GLASSY HEADER
    Glassmorphism, subtle animations, VCA circle only
+   UNIFIED FIX - Consistent spacing on all pages and devices
    ========================================================================== */
 
 /* ==========================================================================
@@ -41,7 +42,7 @@ body {
     line-height: 1.4;
     font-size: 18px;
     transition: background 0.3s ease, color 0.3s ease;
-    padding-top: 65px;  /* Space for fixed header - REDUCED */
+    padding-top: 70px;  /* UNIFIED - consistent space for fixed header */
 }
 
 /* ==========================================================================
@@ -128,7 +129,7 @@ header {
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid rgba(26, 26, 26, 0.08);
     z-index: 9999;
-    padding: 10px 40px;  /* REDUCED from 14px */
+    padding: 10px 40px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -173,8 +174,8 @@ header:hover::before {
 }
 
 .site-logo-circle {
-    width: 38px;   /* REDUCED from 42px */
-    height: 38px;  /* REDUCED from 42px */
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--accent), var(--gradient-end));
     display: flex;
@@ -182,7 +183,7 @@ header:hover::before {
     justify-content: center;
     color: white;
     font-family: 'Work Sans', sans-serif;
-    font-size: 12px;  /* REDUCED from 13px */
+    font-size: 12px;
     font-weight: 800;
     letter-spacing: 0.5px;
     text-decoration: none;
@@ -235,11 +236,11 @@ nav a {
     color: var(--dark);
     text-decoration: none;
     font-family: 'Work Sans', sans-serif;
-    font-size: 10.5px;  /* REDUCED from 11px */
+    font-size: 10.5px;
     font-weight: 600;
     letter-spacing: 0.8px;
     text-transform: uppercase;
-    padding: 7px 14px;  /* REDUCED from 8px 16px */
+    padding: 7px 14px;
     border-radius: 8px;
     position: relative;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -902,34 +903,33 @@ body.dark-mode .article-footer {
 }
 
 /* ==========================================================================
-   STATIC PAGES
+   STATIC PAGES (Category pages, About page)
    ========================================================================== */
 
 .page {
     animation: fadeIn 1s ease;
-    margin-top: 30px;  /* ADDED - space below fixed header */
+    margin-top: 0;  /* REMOVED - body padding handles spacing */
     padding-top: 0;
 }
 
 .page-header {
     text-align: center;
     margin-bottom: 25px;
-    margin-top: 40px;
+    margin-top: 0;  /* REMOVED - body padding handles spacing */
     padding-top: 0;
 }
 
 .page-title {
     font-family: 'Work Sans', sans-serif;
-    font-size: 32px;
+    font-size: 36px;  /* REDUCED from 42px (14% smaller) */
     font-weight: 800;
     letter-spacing: -2px;
     margin-bottom: 12px;
     margin-top: 0;
 }
 
-/* Show subtitle on category pages - it was hidden incorrectly */
 .page-subtitle {
-    font-size: 15px;
+    font-size: 16px;  /* REDUCED from 19px (16% smaller) */
     color: var(--gray);
     line-height: 1.35;
 }
@@ -980,7 +980,7 @@ body.dark-mode .article-footer {
 
 @media (max-width: 992px) {
     body {
-        padding-top: 75px;
+        padding-top: 70px;  /* CONSISTENT - same as desktop */
     }
     
     .container {
@@ -988,7 +988,7 @@ body.dark-mode .article-footer {
     }
     
     header {
-        padding: 12px 30px;
+        padding: 10px 30px;
     }
     
     .header-content {
@@ -996,9 +996,9 @@ body.dark-mode .article-footer {
     }
     
     .site-logo-circle {
-        width: 38px;
-        height: 38px;
-        font-size: 12px;
+        width: 36px;
+        height: 36px;
+        font-size: 11px;
     }
     
     nav {
@@ -1007,7 +1007,7 @@ body.dark-mode .article-footer {
     
     nav a {
         font-size: 10px;
-        padding: 7px 12px;
+        padding: 6px 12px;
     }
     
     .articles-grid,
@@ -1020,12 +1020,16 @@ body.dark-mode .article-footer {
         font-size: 34px;
         letter-spacing: -1.3px;
     }
+    
+    .page-title {
+        font-size: 32px;  /* Proportional reduction */
+    }
 }
 
 @media (max-width: 768px) {
     body {
         font-size: 18px;
-        padding-top: 115px;  /* REDUCED for smaller header */
+        padding-top: 140px;  /* INCREASED - accounts for stacked mobile header */
     }
     
     .container {
@@ -1033,7 +1037,7 @@ body.dark-mode .article-footer {
     }
     
     header {
-        padding: 10px 20px;  /* Consistent with desktop */
+        padding: 10px 20px;
     }
     
     .header-content {
@@ -1043,9 +1047,9 @@ body.dark-mode .article-footer {
     }
     
     .site-logo-circle {
-        width: 36px;
-        height: 36px;
-        font-size: 11px;
+        width: 34px;
+        height: 34px;
+        font-size: 10px;
     }
     
     nav {
@@ -1072,12 +1076,12 @@ body.dark-mode .article-footer {
     }
     
     .article-title {
-        font-size: 30px;
+        font-size: 28px;
         letter-spacing: -1px;
     }
     
     .article-subtitle {
-        font-size: 17px;
+        font-size: 16px;
     }
     
     .article-content h2 {
@@ -1118,7 +1122,11 @@ body.dark-mode .article-footer {
     }
     
     .page-title {
-        font-size: 32px;
+        font-size: 28px;  /* Proportional reduction for mobile */
+    }
+    
+    .page-subtitle {
+        font-size: 14px;  /* Proportional reduction for mobile */
     }
 }
 
@@ -1128,16 +1136,20 @@ body.dark-mode .article-footer {
     }
     
     .site-logo-circle {
-        width: 34px;
-        height: 34px;
-        font-size: 10px;
+        width: 32px;
+        height: 32px;
+        font-size: 9px;
     }
     
     .article-title {
-        font-size: 26px;
+        font-size: 24px;
     }
     
     .card-title {
         font-size: 16px;
+    }
+    
+    .page-title {
+        font-size: 24px;
     }
 }
