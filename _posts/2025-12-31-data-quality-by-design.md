@@ -4,7 +4,7 @@ title: "Designing Trust in Salesforce Data"
 date: 2025-12-31
 category: salesforce
 tags: [salesforce, data quality, crm architecture, data governance, system design]
-excerpt: "Salesforce data quality rarely breaks dramatically—it erodes quietly."
+excerpt: "When data quality isn’t designed into the architecture, Salesforce data rarely breaks dramatically—it erodes quietly."
 image: /images/posts/2025-12-31-data-quality-by-design/hero.jpg
 ---
 
