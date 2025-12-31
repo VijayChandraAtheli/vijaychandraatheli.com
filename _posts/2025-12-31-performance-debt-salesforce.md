@@ -106,7 +106,7 @@ This isn't a scale problem alone. It's a boundary problem.
 
 ### 4. Data Growth Without Archival Strategy
 
-FinTech and Insurance platforms accumulate data aggressively: transactions, policy versions, claims history, audit records.
+Enterprise platforms accumulate data aggressively. FinTech systems collect transaction histories and audit trails. Insurance orgs maintain policy versions and claims records. Healthcare platforms store patient encounters and clinical documentation. Life Sciences organizations track trial data and regulatory submissions.
 
 Without deliberate archiving, Salesforce continues operating on data that was never meant to stay "hot" forever.
 
@@ -172,7 +172,7 @@ Performance sits between roles:
 
 System responsiveness often belongs to no one.
 
-**What isn't owned isn't prioritized.**
+> **What isn't owned isn't prioritized.**
 
 ### 2. Delivery Metrics Crowd It Out
 
@@ -247,10 +247,9 @@ The distinction matters:
   </table>
 </div>
 
-Or more simply:
 
-**Performance debt drains today.**  
-**Technical debt mortgages tomorrow.**
+> **Performance debt drains today.**  
+> **Technical debt mortgages tomorrow.**
 
 ## Why This Matters for Leadership
 
