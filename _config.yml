@@ -45,6 +45,8 @@ grid_columns: 4
 # Featured Posts (list exact filenames without .md extension)
 # Format: "YYYY-MM-DD-article-slug"
 featured_posts:
+  - "2025-12-30-supply-chain-algorithms"
+  - "2025-12-31-performance-debt-salesforce"
   - "2025-12-28-welcome-to-my-journal"
 
 # Navigation (Reordered for narrative flow)
