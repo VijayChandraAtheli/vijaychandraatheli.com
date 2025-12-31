@@ -18,7 +18,7 @@ What appears as a few extra seconds is often dismissed as "acceptable." Over tim
 
 Drawing from implementations across FinTech and Insurance, I've repeatedly seen performance issues framed as technical problems—when they were actually **governance, design, and ownership problems**.
 
-This article explores performance debt as a distinct and under-recognized enterprise risk in Salesforce—particularly in regulated, high-volume environments.
+This article explores performance debt as a distinct and under-recognized enterprise risk within Salesforce implementations—particularly in regulated, high-volume environments.
 
 ![Performance debt visualization showing layers of system complexity](/images/posts/2025-12-31-performance-debt-salesforce/performance-debt-salesforce.png)
 *The invisible accumulation: How performance debt layers into enterprise systems*
@@ -212,13 +212,44 @@ Performance debt is rarely approved. **It is absorbed.**
 
 The distinction matters:
 
-| Dimension | Performance Debt | Technical Debt |
-|-----------|------------------|----------------|
-| Visibility | Users feel it daily | Engineers feel it during change |
-| Impact timing | Immediate, cumulative | Deferred, explosive |
-| Primary cost | Productivity and trust | Velocity and innovation |
-| Typical response | Workarounds | Avoidance |
-| Risk | Cultural erosion | Structural fragility |
+<div style="overflow-x: auto; margin: 2em 0;">
+  <table style="width: 100%; border-collapse: collapse; border: 1px solid var(--border, #ddd);">
+    <thead>
+      <tr style="background: var(--accent, #d63447); color: white;">
+        <th style="padding: 12px; text-align: left; border: 1px solid var(--border, #ddd);">Dimension</th>
+        <th style="padding: 12px; text-align: left; border: 1px solid var(--border, #ddd);">Performance Debt</th>
+        <th style="padding: 12px; text-align: left; border: 1px solid var(--border, #ddd);">Technical Debt</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd); font-weight: 600;">Visibility</td>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd);">Users feel it daily</td>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd);">Engineers feel it during change</td>
+      </tr>
+      <tr style="background: rgba(214, 52, 71, 0.05);">
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd); font-weight: 600;">Impact timing</td>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd);">Immediate, cumulative</td>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd);">Deferred, explosive</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd); font-weight: 600;">Primary cost</td>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd);">Productivity and trust</td>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd);">Velocity and innovation</td>
+      </tr>
+      <tr style="background: rgba(214, 52, 71, 0.05);">
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd); font-weight: 600;">Typical response</td>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd);">Workarounds</td>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd);">Avoidance</td>
+      </tr>
+      <tr>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd); font-weight: 600;">Risk</td>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd);">Cultural erosion</td>
+        <td style="padding: 12px; border: 1px solid var(--border, #ddd);">Structural fragility</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 Or more simply:
 
