@@ -113,33 +113,13 @@ body.header-is-sticky .theme-toggle {
 }
 
 /* ==========================================================================
-   HEADER
+   HEADER - REDUCED VERTICAL SPACE (~7% reduction)
    ========================================================================== */
 
 header {
     max-width: 100%;
-    padding: 40px 40px 25px 40px;
-    margin: 0 0 15px 0;
-    text-align: center;
-    border-bottom: 2px solid var(--dark);
-    background: var(--light);
-    transition: all 0.3s ease;
-    z-index: 999;
-}
-
-body.dark-mode header {
-    border-bottom-color: #333;
-    background: var(--light);
-}
-
-/* ==========================================================================
-   HEADER - ALWAYS FLEXBOX, SMOOTH TRANSITIONS
-   ========================================================================== */
-
-header {
-    max-width: 100%;
-    padding: 40px 40px 25px 40px;
-    margin: 0 0 15px 0;
+    padding: 30px 40px 18px 40px;  /* REDUCED from 40px 40px 25px 40px */
+    margin: 0 0 10px 0;              /* REDUCED from 0 0 15px 0 */
     border-bottom: 2px solid var(--dark);
     background: var(--light);
     z-index: 999;
@@ -185,7 +165,7 @@ body.dark-mode header.sticky {
     font-family: 'Work Sans', sans-serif;
     font-size: 48px;
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: 5px;  /* REDUCED from 8px */
     letter-spacing: -2px;
     opacity: 1;
     max-height: 200px;
@@ -212,7 +192,7 @@ header.sticky .site-title {
     font-family: 'Crimson Pro', serif;
     font-size: 16px;
     color: var(--gray);
-    margin-bottom: 18px;
+    margin-bottom: 13px;  /* REDUCED from 18px */
     font-style: italic;
     letter-spacing: 0.3px;
     line-height: 1.4;
@@ -262,7 +242,7 @@ nav {
     display: flex;
     gap: 25px;
     justify-content: center;
-    padding-top: 16px;
+    padding-top: 11px;  /* REDUCED from 16px */
     flex-wrap: wrap;
     transition: padding 0.3s cubic-bezier(0.23, 1, 0.32, 1),
                 gap 0.3s ease;
@@ -648,7 +628,7 @@ body.dark-mode .article-card:hover {
 }
 
 .article-header {
-    margin-bottom: 28px;
+    margin-bottom: 22px;  /* REDUCED from 28px - tighter spacing to content */
 }
 
 .category-badge {
@@ -668,11 +648,11 @@ body.dark-mode .article-card:hover {
 
 .article-title {
     font-family: 'Work Sans', sans-serif;
-    font-size: 50px;
+    font-size: 38px;  /* REDUCED from 50px - allows title + content above fold */
     font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -2px;
-    margin-bottom: 18px;
+    line-height: 1.15;  /* INCREASED from 1.08 - better readability for multi-line */
+    letter-spacing: -1.5px;  /* REDUCED from -2px - less aggressive */
+    margin-bottom: 14px;  /* REDUCED from 18px */
     animation: slideIn 0.8s ease;
 }
 
@@ -688,10 +668,10 @@ body.dark-mode .article-card:hover {
 }
 
 .article-subtitle {
-    font-size: 22px;
+    font-size: 19px;  /* REDUCED from 22px - proportional to title reduction */
     color: var(--gray);
     line-height: 1.4;
-    margin-bottom: 28px;
+    margin-bottom: 24px;  /* REDUCED from 28px */
     font-weight: 400;
 }
 
@@ -753,7 +733,7 @@ body.dark-mode .article-meta {
    ========================================================================== */
 
 .article-content {
-    margin: 28px 0 40px 0;
+    margin: 18px 0 40px 0;  /* REDUCED from 28px → 22px → 18px - minimal gap to first paragraph */
 }
 
 .article-content p {
@@ -1010,7 +990,7 @@ body.dark-mode .article-footer {
     }
     
     header {
-        padding: 35px 30px 22px 30px;
+        padding: 28px 30px 16px 30px;  /* REDUCED for tablet */
     }
     
     header.sticky {
@@ -1033,8 +1013,8 @@ body.dark-mode .article-footer {
     }
     
     .article-title {
-        font-size: 38px;
-        letter-spacing: -1.5px;
+        font-size: 34px;  /* REDUCED proportionally from 38px */
+        letter-spacing: -1.3px;
     }
 }
 
@@ -1048,8 +1028,8 @@ body.dark-mode .article-footer {
     }
     
     header {
-        padding: 30px 20px 18px 20px;
-        margin-bottom: 12px;
+        padding: 22px 20px 14px 20px;  /* REDUCED for mobile */
+        margin-bottom: 10px;            /* REDUCED for mobile */
     }
     
     header.sticky {
@@ -1072,17 +1052,17 @@ body.dark-mode .article-footer {
     .site-title {
         font-size: 28px;
         letter-spacing: -1px;
-        margin-bottom: 6px;
+        margin-bottom: 4px;  /* REDUCED for mobile */
     }
     
     .site-tagline {
         font-size: 14px;
-        margin-bottom: 14px;
+        margin-bottom: 10px;  /* REDUCED for mobile */
     }
     
     nav {
         gap: 14px;
-        padding-top: 12px;
+        padding-top: 9px;  /* REDUCED for mobile */
     }
     
     nav a {
@@ -1108,12 +1088,12 @@ body.dark-mode .article-footer {
     }
     
     .article-title {
-        font-size: 32px;
+        font-size: 30px;  /* REDUCED proportionally from 32px */
         letter-spacing: -1px;
     }
     
     .article-subtitle {
-        font-size: 18px;
+        font-size: 17px;  /* REDUCED proportionally from 18px */
     }
     
     .article-content h2 {
@@ -1168,7 +1148,7 @@ body.dark-mode .article-footer {
     }
     
     .article-title {
-        font-size: 28px;
+        font-size: 26px;  /* REDUCED proportionally from 28px */
     }
     
     .card-title {
