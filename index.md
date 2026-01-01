@@ -2,9 +2,9 @@
 layout: home
 title: Home
 intro: |
-  ### Vijay Chandra Atheli
+  ### Vijay Chandra Atheli's
 
-  ## Pragmatic perspectives on business intelligence and transformation
+  ## Pragmatic Perspectives on Business Strategy, Analytics and Tech Implementations
 
   This journal reflects how I think about modern organizations—through the lens of how business strategy and analytics come together to shape how companies operate, scale, and compete.
 
