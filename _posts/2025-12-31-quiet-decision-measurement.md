@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "The Quiet Decision That Separates High-Performing Organizations"
+title: "The Decision That Happens Before Strategy"
 date: 2025-12-31
 category: consulting-insights
 tags: [strategy execution, kpis, measurement frameworks, organizational alignment, business transformation]
-excerpt: "Before solutions are designed and strategies operationalized, successful organizations make one crucial choice that shapes everything that follows."
+excerpt: "What separates organizations that execute well from those that stay busy: choosing metrics before choosing solutions."
 image: /images/posts/2025-12-31-quiet-decision-measurement/hero.jpg
 ---
 
