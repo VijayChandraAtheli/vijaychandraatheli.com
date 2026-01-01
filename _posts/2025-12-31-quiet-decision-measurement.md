@@ -219,4 +219,3 @@ Everything else follows.
 ---
 
 *Navigating measurement strategy for your organization? [Let's connect](https://linkedin.com/in/vijay-chandra-atheli) to discuss frameworks that translate intent into action.*
-```
