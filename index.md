@@ -4,7 +4,7 @@ title: Home
 intro: |
   ## Vijay Chandra Atheli
 
-  ### Where strategy and analytics define modern business
+  ### Pragmatic perspectives on business intelligence and transformation
 
   This journal reflects how I think about modern organizations—through the lens of how business strategy and analytics come together to shape how companies operate, scale, and compete.
 
