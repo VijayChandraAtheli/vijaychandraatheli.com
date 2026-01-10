@@ -41,7 +41,7 @@ Beyond specific technologies, I write about the consulting profession itself—c
 
 I'm always interested in connecting with fellow professionals, potential collaborators, and anyone working on interesting problems in analytics and technology.
 
-**LinkedIn:** [linkedin.com/in/your-profile](https://linkedin.com/in/vijay-chandra-atheli)  
+**LinkedIn:** [linkedin.com/in/vijay-chandra-atheli](https://linkedin.com/in/vijay-chandra-atheli)  
 **GitHub:** [github.com/VijayChandraAtheli](https://github.com/VijayChandraAtheli)  
 **Email:** [vijaychandraatheli@gmail.com](mailto:vijaychandraatheli@gmail.com)
 
