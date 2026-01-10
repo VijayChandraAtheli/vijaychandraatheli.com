@@ -26,7 +26,7 @@ Most tightly coupled integration architectures were not designed that way intent
 
 The problem emerges at scale. Every new requirement adds another dependency. Every downstream system becomes something Salesforce must wait for, coordinate with, or handle errors from. What started as "control" becomes a bottleneck where Salesforce orchestrates distributed transactions across systems that were never designed to operate in lockstep.
 
-I worked with an EdTech company where their Salesforce enrollment flow made six synchronous callouts to different systems. On a good day, this added three seconds of latency to the user experience. During peak enrollment periods, when one or more systems experienced load, the entire enrollment process failed. Sales reps could not close deals because Salesforce was waiting on systems two or three hops away.
+I worked with an Insurance client where their Sales operations made synchronous callouts to different systems. On a good day, this might have added three seconds of latency to the user experience. During peak enrollment periods, when one or more systems experienced load, the entire sales funnel system failed. Sales reps could not close deals because Salesforce was waiting on systems two or three hops away.
 
 The organization believed this architecture gave them control because every transaction was coordinated and confirmed. But the control was illusory. When any downstream system had issues, the entire business process stopped. Dependencies that were supposed to provide safety instead created fragility.
 
@@ -47,7 +47,7 @@ This shift eliminates the coordination dance. Salesforce does not call each syst
 
 But this raises the central question: if Salesforce is not orchestrating these processes, how do you maintain control?
 
-The answer is that you trade *coordination* for *contracts*. In a tightly coupled architecture, control comes from synchronous transaction management. In an event-driven architecture, control comes from well-defined event schemas, monitoring, and governance around how subscribers process events.
+The answer is that you trade *coordination* for *contracts*. In a tightly coupled architecture, control comes from synchronous transaction management. **In an event-driven architecture, control comes from well-defined event schemas, monitoring, and governance around how subscribers process events.**
 
 ### What "Control" Looks Like in Event-Driven Architecture
 
@@ -194,5 +194,4 @@ Control is not about orchestrating every step synchronously. It is about definin
 
 ---
 
-*I write about practical approaches to Salesforce architecture and CRM strategy based on real implementation experience. Connect on [LinkedIn](https://linkedin.com/in/vijay-chandra-atheli) or explore more articles in my [consulting journal](/journal/).*
-```
+*Implementing event-driven integration in your Salesforce environment? I'd welcome a conversation about your specific architecture challenges. Connect with me on [LinkedIn](https://linkedin.com/in/vijay-chandra-atheli)*
