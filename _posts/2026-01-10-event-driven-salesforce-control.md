@@ -5,7 +5,7 @@ date: 2026-01-10
 category: salesforce
 tags: [salesforce, platform events, integration architecture, event-driven design, loose coupling]
 excerpt: "Event-driven integration promises to eliminate brittle dependencies between Salesforce and enterprise systems. But how do you maintain visibility and governance when systems operate autonomously?"
-image: /images/posts/2026-01-10-event-driven-salesforce-control/governance-architecture.png
+image: /images/posts/2026-01-10-event-driven-salesforce-control/hero.jpg
 ---
 
 ## The Integration Paradox
