@@ -40,7 +40,7 @@ By the time something ships, it might check every documented requirement while c
 
 Rather than alphabetizing terms, I've organized them by **delivery phase**—because the same word means different things at different altitudes.
 
-![Five delivery phases framework](/images/posts/2026-01-23-bridging-business-tech-terminology/phases-framework.jpg)
+![Five delivery phases framework](/images/posts/2026-01-23-bridging-business-tech-terminology/phases-framework.png)
 *The five phases of cross-functional delivery: Each phase uses different language to describe what matters at that altitude.*
 
 ---
