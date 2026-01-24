@@ -245,7 +245,7 @@ The translation problem extends into new territory as AI enters the delivery pip
 ---
 
 **Read the series:**  
-→ [Part 1: The Translation Problem](/consulting-insights/translation-problem-business-tech/)  
+→ [Part 1: When words drift](/consulting-insights/when-words-drift/)  
 → Part 2: Blueprints to Sprints (you are here)  
 → [Part 3: AI-Era Delivery Terms](/consulting-insights/ai-era-delivery-terms/)
 

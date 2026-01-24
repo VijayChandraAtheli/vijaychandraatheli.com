@@ -10,7 +10,7 @@ image: /images/posts/2026-01-23-ai-era-delivery-terms/hero.jpg
 
 ## The New Translation Layer
 
-[Part 1](/consulting-insights/the-translation-problem-nobody-admits/) explored how strategic and requirements terms shift meaning across organizational altitudes.  
+[Part 1](/consulting-insights/when-words-drift/) explored how strategic and requirements terms shift meaning across organizational altitudes.  
 [Part 2](/consulting-insights/blueprints-to-sprints-process-execution/) examined how that drift continues through process modeling and sprint execution.
 
 This article looks at the next layer of complexity: AI is introducing an entirely new vocabulary into cross-functional delivery.
@@ -216,7 +216,7 @@ When teams clarify which language they are using, misalignment becomes visible�
 ---
 
 **Complete series:**  
-→ [Part 1: The Translation Problem](/consulting-insights/translation-problem-business-tech/)  
+→ [Part 1: When words drift](/consulting-insights/when-words-drift/)  
 → [Part 2: From Blueprints to Sprints](/consulting-insights/blueprints-to-sprints-process-execution/)  
 → Part 3: AI-Era Delivery Terms (you are here)
 
