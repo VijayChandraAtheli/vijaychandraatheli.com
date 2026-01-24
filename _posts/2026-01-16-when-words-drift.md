@@ -40,7 +40,7 @@ By the time something ships, it may satisfy every documented requirement while m
 
 Rather than listing terms alphabetically, this article organizes them by **delivery phase**. The same word carries different meaning at different altitudes of work.
 
-![Five delivery phases framework](/images/posts/2026-01-16-the-translation-problem-nobody-admits/phases-framework.png)
+![Five delivery phases framework](/images/posts/2026-01-16-when-words-drift/phases-framework.png)
 *Five phases of cross-functional delivery, each operating at a different altitude with its own language and priorities.*
 
 This article, **Part 1 of a three-part series**, focuses on the first two phases: **Strategic Planning** and **Requirements & Artifacts**. These phases quietly shape everything that follows.
