@@ -4,7 +4,7 @@ title: "AI-Era Delivery: The Terms Reshaping Modern Teams"
 date: 2026-01-23
 category: consulting-insights
 tags: [AI delivery, RAG, prompt engineering, LLMOps, vector databases, modern architecture]
-excerpt: "Part 3: How AI is introducing new vocabulary and new translation challenges. Decoding RAG, prompts, LLMOps, and vector databases."
+excerpt: "Part 3: How AI is introducing new vocabulary and new translation challenges."
 image: /images/posts/2026-01-23-ai-era-delivery-terms/hero.jpg
 ---
 
