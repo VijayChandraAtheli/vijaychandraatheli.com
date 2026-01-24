@@ -418,4 +418,3 @@ Because everyone knows which language is being spoken.
 → Part 3: AI-Era Delivery Terms (you are here)
 
 *Building AI-powered features or navigating cross-functional delivery? [Let's discuss](https://linkedin.com/in/vijay-chandra-atheli) patterns that work in your context.*
-```

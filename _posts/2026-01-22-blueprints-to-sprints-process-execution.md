@@ -250,4 +250,4 @@ The translation problem extends into new territory as AI enters the delivery pip
 → Part 3: AI-Era Delivery Terms *(publishing Feb 6)*
 
 *Building cross-functional delivery capabilities? [Let's discuss](https://linkedin.com/in/vijay-chandra-atheli) patterns that work in your context.*
-```
+

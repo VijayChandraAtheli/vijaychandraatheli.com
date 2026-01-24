@@ -293,4 +293,3 @@ The translation problem is solvable. But first, you need to know which language 
 → Part 3: AI-Era Delivery Terms *(publishing Jan 23)*
 
 *Working on cross-functional initiatives? [Let's discuss](https://linkedin.com/in/vijay-chandra-atheli) translation patterns that work in your context.*
-```
