@@ -5,7 +5,7 @@ date: 2026-01-16
 category: consulting-insights
 tags: [business analysis, requirements, strategic planning, enterprise delivery, cross-functional teams]
 excerpt: "Part 1 of 3. How shared terms quietly change meaning across strategy, planning, and execution."
-image: /images/posts/2026-01-16-the-translation-problem-nobody-admits/hero.jpg
+image: /images/posts/2026-01-16-when-words-drift/hero.jpg
 ---
 
 ## A Pattern Many Teams Recognize
