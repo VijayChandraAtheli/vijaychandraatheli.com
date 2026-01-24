@@ -10,7 +10,7 @@ image: /images/posts/2026-01-23-ai-era-delivery-terms/hero.jpg
 
 ## The New Translation Layer
 
-[Part 1](/consulting-insights/translation-problem-business-tech/) explored strategic and requirements terms. [Part 2](/consulting-insights/blueprints-to-sprints-process-execution/) covered process modeling and sprint execution.
+[Part 1](/consulting-insights/the-translation-problem-nobody-admits/) explored strategic and requirements terms. [Part 2](/consulting-insights/blueprints-to-sprints-process-execution/) covered process modeling and sprint execution.
 
 This article addresses 2026's emerging challenge: AI is adding an entirely new vocabulary layer to cross-functional delivery.
 
