@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "From Blueprints to Sprints: Navigating Process and Execution"
-date: 2026-01-23
+date: 2026-01-22
 category: consulting-insights
 tags: [agile delivery, process modeling, sprint planning, BPMN, technical debt]
 excerpt: "Part 2: Moving from strategic plans to operational delivery. Decoding the terms that bridge design and execution."
-image: /images/posts/2026-01-23-blueprints-to-sprints-process-execution/hero.jpg
+image: /images/posts/2026-01-22-blueprints-to-sprints-process-execution/hero.jpg
 ---
 
 ## Bridging Strategy and Execution
