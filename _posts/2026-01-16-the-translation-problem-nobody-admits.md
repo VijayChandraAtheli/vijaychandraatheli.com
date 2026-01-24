@@ -289,8 +289,8 @@ The translation problem is solvable. But first, you need to know which language 
 
 **Read the series:**  
 → Part 1: The Translation Problem (you are here)  
-→ Part 2: From Blueprints to Sprints *(publishing Jan 30)*  
-→ Part 3: AI-Era Delivery Terms *(publishing Feb 6)*
+→ Part 2: From Blueprints to Sprints *(publishing Jan 22)*  
+→ Part 3: AI-Era Delivery Terms *(publishing Jan 23)*
 
 *Working on cross-functional initiatives? [Let's discuss](https://linkedin.com/in/vijay-chandra-atheli) translation patterns that work in your context.*
 ```
