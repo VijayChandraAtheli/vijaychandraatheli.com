@@ -199,7 +199,7 @@ Translate technical costs into business impact: time, money, risk, opportunity c
 
 ---
 
-![Complete Process-to-Execution Framework](/images/posts/2026-01-23-blueprints-to-sprints-process-execution/process-execution-comprehensive.png)
+![Complete Process-to-Execution Framework](/images/posts/2026-01-22-blueprints-to-sprints-process-execution/process-execution-comprehensive.png)
 *From process mapping to technical debt: The complete execution translation journey visualized*
 
 ---
