@@ -23,6 +23,7 @@ The source landscape looks familiar:
 | Loyalty platform | E. Carter, Member `L-77821`, `Status = Active`, preferred store |
 | Legacy warehouse | EMILY J CARTER, Customer `A91`, previous address, historical transactions |
 
+
 None of these records is necessarily incorrect. The CRM flag may indicate that Emily has purchased before. The loyalty status may describe whether her membership is in good standing. The web activity belongs to a browser or visitor identifier until there is sufficient evidence to associate it with a known person. And a shipping address may describe the destination of a particular order rather than Emily's home.
 
 Yet the moment these records are brought together, the business is tempted to read them as one consistent customer story. Does `A91` in the warehouse relate to `003-A91` in CRM? Did Emily browse those products, or did someone else use the same device? Does *active* mean the same thing across systems? Which address is appropriate for the next interaction?
