@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Data Longevity Debt: Why Salesforce Data 360 Can Unify Records but Not Meaning"
-subtitle: "A practical look at DLOs, DMOs, fully qualified keys, identity resolution, reconciliation, and what happens when years of enterprise data are finally asked to describe the same customer."
+title: "Data Longevity Debt: Building trust in the Era of Data 360"
+subtitle: "How historical data, identity resolution, and governance shape trusted customer profiles and better business decisions."
 date: 2026-10-23
 category: data-strategy
-tags: [salesforce data 360, data quality, identity resolution, data governance, customer 360, data architecture, zero copy, data modeling]
-excerpt: "Salesforce Data 360 can unify profiles and activate customer data at scale. The harder problem is deciding whether years of identifiers, definitions, and source-system history still mean what the organization assumes they mean."
+tags: [salesforce data 360, data longevity debt, data quality, identity resolution, data governance, data architecture]
+excerpt: "Salesforce Data 360 brings fragmented enterprise data together. Explore how data history, identity resolution, and governance help turn unified customer profiles into trusted insights and meaningful business outcomes."
 image: /images/posts/2026-10-23-data-longevity-debt-data-360/hero.jpg
 ---
 
