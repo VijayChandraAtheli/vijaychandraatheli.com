@@ -19,7 +19,7 @@ The source landscape looks familiar:
 | --- | --- |
 | Salesforce CRM | Emily Carter, Contact `003-A91`, personal email, `Customer = Yes` |
 | Commerce platform | Emily Carter, Customer `C-10482`, recent orders, shipping address |
-| Marketing Cloud Personalization | Visitor `web-72C91`, 18 product views, 3 cart additions, 2 return sessions |
+| MCP | Visitor `web-72C91`, 18 product views, 3 cart additions, 2 return sessions |
 | Loyalty platform | E. Carter, Member `L-77821`, `Status = Active`, preferred store |
 | Legacy warehouse | EMILY J CARTER, Customer `A91`, previous address, historical transactions |
 
