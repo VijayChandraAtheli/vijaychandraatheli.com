@@ -6,7 +6,7 @@ date: 2026-10-23
 category: data-strategy
 tags: [salesforce data 360, data quality, identity resolution, data governance, customer 360, data architecture, zero copy, data modeling]
 excerpt: "Salesforce Data 360 can unify profiles and activate customer data at scale. The harder problem is deciding whether years of identifiers, definitions, and source-system history still mean what the organization assumes they mean."
-image: /images/posts/2026-10-23-data-longevity-debt-data-360/hero.svg
+image: /images/posts/2026-10-23-data-longevity-debt-data-360/hero.jpg
 ---
 
 Salesforce Data 360 is often introduced through its end state: connect fragmented customer data, harmonize it into a common model, resolve identities, calculate insights, build segments, and activate those insights across the business.
@@ -130,9 +130,9 @@ That decision produces four possible outcomes.
 
 The true-positive and true-negative quadrants are the desired outcomes. The two error quadrants are where the business risk begins.
 
-![The four identity-resolution outcomes and how false merges and false splits propagate to insights, segmentation, and activation.](/images/posts/2026-10-23-data-longevity-debt-data-360/identity-resolution-outcomes.svg)
+![Identity-resolution matrix: true positive (correct match), false negative (false split), false positive (false merge), and true negative (correct separation), showing the impact of mistakes on profiles, insights, segments, and activation.](/images/posts/2026-10-23-data-longevity-debt-data-360/identity-resolution-outcomes.png)
 
-*Figure: Identity resolution errors propagate beyond matching and into downstream decisions.*
+*Figure: Matching errors propagate downstream. A false merge blends different people; a false split fragments one person across records.*
 
 ### False Positive: The False Merge
 
