@@ -1,353 +1,207 @@
 ---
 layout: post
-title: "Data Longevity Debt: Building trust in the Era of Data 360"
-subtitle: "How historical data, identity resolution, and governance shape trusted customer profiles and better business decisions."
+title: "Data Longevity Debt: Building Trust in the Era of Data 360"
+subtitle: "Why technically valid data can lead to the wrong customer decision—and how architects can protect meaning from source to activation."
 date: 2026-10-23
 category: data-strategy
 tags: [salesforce data 360, data longevity debt, data quality, identity resolution, data governance, data architecture]
-excerpt: "Salesforce Data 360 brings fragmented enterprise data together. Explore how data history, identity resolution, and governance help turn unified customer profiles into trusted insights and meaningful business outcomes."
+excerpt: "A unified customer profile is only as trustworthy as the meaning behind its data. Explore historical semantic drift, identity resolution risks, and the architectural controls needed for defensible decisions in Salesforce Data 360."
 image: /images/posts/2026-10-23-data-longevity-debt-data-360/hero.jpg
 ---
 
-Salesforce Data 360 is often introduced through its end state: connect fragmented customer data, harmonize it into a common model, resolve identities, calculate insights, build segments, and activate those insights across the business.
+A customer profile can be complete and still lead to the wrong decision.
 
-That sequence is technically correct. It is also where organizations can underestimate the hardest part of the implementation.
+Imagine a national consumer brand preparing to personalize its next interaction with Emily Carter. The marketing team wants to connect her recent product interest with purchase history, loyalty activity, and service interactions. Salesforce Data 360 can help bring these signals together. But before the business decides what to say to Emily, it must establish what those signals actually represent.
 
-The difficult question is rarely whether the platform can connect the data. The difficult question is whether the organization can explain what the connected data actually means.
-
-Consider a national consumer brand preparing its first Data 360 use case. The business wants to identify customers showing strong product interest online, combine that behavior with purchase and service history, and personalize the next interaction.
-
-The source landscape might look like this:
+The source landscape looks familiar:
 
 | Source | What it knows about Emily Carter |
 | --- | --- |
-| Salesforce CRM | Emily Carter, Contact `003-A91`, personal email, Customer = Yes |
-| Commerce platform | Emily Carter, Customer `C-10482`, recent purchases, shipping address |
+| Salesforce CRM | Emily Carter, Contact `003-A91`, personal email, `Customer = Yes` |
+| Commerce platform | Emily Carter, Customer `C-10482`, recent orders, shipping address |
 | Marketing Cloud Personalization | Visitor `web-72C91`, 18 product views, 3 cart additions, 2 return sessions |
-| Loyalty platform | E. Carter, Member `L-77821`, Status = Active, preferred store |
-| Legacy warehouse | EMILY J CARTER, Customer `A91`, old address, historical transactions |
+| Loyalty platform | E. Carter, Member `L-77821`, `Status = Active`, preferred store |
+| Legacy warehouse | EMILY J CARTER, Customer `A91`, previous address, historical transactions |
 
-Nothing here is obviously broken. Every system may be functioning exactly as designed.
+None of these records is necessarily incorrect. The CRM flag may indicate that Emily has purchased before. The loyalty status may describe whether her membership is in good standing. The web activity belongs to a browser or visitor identifier until there is sufficient evidence to associate it with a known person. And a shipping address may describe the destination of a particular order rather than Emily's home.
 
-The problems appear when the organization asks Data 360 to treat those records as parts of the same customer story.
+Yet the moment these records are brought together, the business is tempted to read them as one consistent customer story. Does `A91` in the warehouse relate to `003-A91` in CRM? Did Emily browse those products, or did someone else use the same device? Does *active* mean the same thing across systems? Which address is appropriate for the next interaction?
 
-Does `A91` in the legacy warehouse relate to `003-A91` in CRM, or is the similarity meaningless? Does `Customer = Yes` in CRM mean the same thing as `Status = Active` in the loyalty platform? One may indicate that Emily has purchased before, while the other may mean her loyalty membership had activity within a defined period.
+These are not connector questions. They are questions about meaning, identity, time, and permissible use. Data 360 can provide the architecture to work across systems, but that architecture makes the answers more consequential—not less.
 
-Can `web-72C91` be confidently connected to Emily after she identifies herself? If Emily shares an email address with another household member, should both records become one unified individual? Which address is current, and which source owns that answer?
+## When Data Outlives Its Definition
 
-This is where Data 360 readiness begins: not at the connector, but at the meaning accumulated behind the data.
+Data quality is often discussed in terms of missing values, duplicates, and invalid formats. Those problems matter, but they do not capture a quieter failure: a value can be correct under the rules that created it and misleading under the rules used to interpret it later.
 
-## The Data Is Not Always Dirty. Sometimes It Is Carrying History.
+Consider a field named `Active_Customer` in the legacy warehouse. From 2018 through 2021, the business defined an active customer as someone who had purchased within the previous 24 months. In 2022, the field was repurposed to indicate an open loyalty membership. In 2025, it became an eligibility flag for an engagement program.
 
-Data quality conversations often reduce enterprise data into two categories: clean and dirty.
+The column name remained unchanged. The underlying business question did not.
 
-That misses a more difficult class of problems. Data can be accurate, complete, and valid according to the rules of a source system while still being unsafe to interpret in a new context.
+An analyst looking at eight years of `Active_Customer` values might produce a polished trend showing how the active-customer population changed. The query could execute perfectly, and every source row could be valid, while the trend itself compares three incompatible definitions.
 
-Emily's old address may have been correct when it was captured. Her loyalty status may be current. Her CRM email may be valid. Her web behavior may accurately describe a browser session. Each record can be locally correct while the combined interpretation is wrong.
+I think of this as **data longevity debt**: the accumulated gap between the meaning data had when it was created and the meaning later systems or teams assume it has. It is not an official Salesforce metric. It is a useful way to describe an architectural liability that grows when definitions change without corresponding documentation, transformation rules, or ownership.
 
-This becomes more important as data ages because business definitions rarely remain static.
+This is different from merely having old data. A 2019 purchase remains useful if its date, currency, customer relationship, and business context are understood. The problem arises when we reuse a historical value as though its definition were timeless.
 
-Suppose the legacy warehouse has contained a field called `Active_Customer` since 2018. From 2018 through 2021, "active" meant a purchase within the previous 24 months. In 2022, it changed to an open loyalty account. In 2025, another team reused the same field for customers eligible for an engagement program.
+Repaying that debt may require preserving the definition that applied at the time, separating the three concepts into distinct attributes, or restating historical data under a documented common definition where that is legitimately possible. Without one of those steps, moving the field into a newer platform does not make its history comparable.
 
-Every historical value may have been populated correctly. No record is necessarily corrupt or duplicated. Yet an eight-year trend treating `Active_Customer` as one consistent concept is analytically wrong because the meaning changed while the column name survived.
+## Harmonization Can Standardize Structure Without Standardizing Meaning
 
-I think of this as **data longevity debt**: the accumulated gap between what data meant when it was created and what the organization assumes it means today.
+In Data 360, data brought in through ingestion is represented in Data Lake Objects (DLOs), and harmonization maps relevant source fields into Data Model Objects (DMOs) that express shared business concepts. Federated sources can also be represented through external or virtual DLOs. The model gives different systems a common language for analysis and activation.
 
-The longer a data asset lives, the more opportunities there are for definitions, owners, systems, and business rules to change around it. A field can remain technically valid while becoming semantically unstable.
+But mapping two fields to the same DMO attribute is a claim about what those fields mean.
 
-That matters in Data 360 because harmonization creates a common structure, and a common structure can make information look more consistent than it really is.
+Suppose three sources expose:
 
-## DLO to DMO Mapping Is Not Just Field Mapping
+- `Customer_Status = Active`
+- `Loyalty_Status = Current`
+- `Account_State = 1`
 
-When data is ingested into Data 360, source-oriented records are represented in Data Lake Objects. Harmonization then maps those source structures into Data Model Objects that represent shared business concepts.
+The names look compatible. Their definitions may not be. One could describe recent purchasing behavior, another membership standing, and the third whether an account record is open. Combining them into a single customer-status attribute might produce a clean-looking model while erasing distinctions that matter to the business.
 
-On the surface, this can look like a schema exercise.
+Measures deserve the same scrutiny. Commerce reports Emily's lifetime value as `$4,800`; finance reports `$3,950`; loyalty reports `$5,200`. The discrepancy may reflect refunds, different revenue components, household-level aggregation, or different time windows. Choosing one figure without resolving those differences is not reconciliation; it is selecting a number before agreeing on the question.
 
-But consider three fields:
+An architect should establish the definition, grain, time period, and source authority of a critical attribute before it becomes a common enterprise concept. For the historical `Active_Customer` example, that also means recording *when* each definition applied. The event timestamp, ingestion timestamp, and effective period of a business rule are not necessarily the same thing.
 
-`Customer_Status = Active`
+This requirement does not disappear with zero-copy federation. Data 360 supports query federation, where an external compute engine executes the query, and file federation, where Data 360 can query supported external storage using its own compute. Caching or acceleration may also be used. Those are important design choices for data access, freshness, performance, and cost; none establishes whether `product_view` or `active_customer` has a stable business meaning. [1](#ref-1)[2](#ref-2)
 
-`Loyalty_Status = Current`
+The same discipline applies regardless of how much data the platform can reach: connect the history required for the decision, and be able to explain how that history is interpreted.
 
-`Account_State = 1`
+## Keys Establish Relationships; They Do Not Establish Identity
 
-Should all three map into the same standardized customer-status attribute?
+The next risk is more mechanical, but no less damaging.
 
-Maybe. But the answer cannot be derived from the field names alone.
+Imagine two systems that both contain `Customer_ID = A91`. Those values may refer to completely different records. An identifier is not universally unique simply because its column is called `Customer_ID`.
 
-The first may indicate purchase recency. The second may indicate membership standing. The third may simply indicate that an account record has not been closed. Mapping them together because they look similar would create a clean technical model containing an ambiguous business concept.
+Data 360 addresses this kind of collision with **Fully Qualified Keys (FQKs)**. A source key is interpreted together with its key qualifier, so `A91` from the legacy warehouse is distinct from `A91` in the loyalty platform. Appropriate qualifier fields matter for both primary and foreign keys, including the relationships and joins used in calculated insights. [3](#ref-3)
 
-The same problem appears with measures. Suppose one source reports Emily's lifetime value as `$4,800`, another reports `$3,950`, and a third reports `$5,200`. Investigation may show that one includes merchandise only, one excludes refunds, and one includes service-plan revenue and household purchases.
+That prevents an avoidable class of incorrect associations. It does not prove that two source records represent the same person.
 
-None of the values is necessarily wrong. They answer different questions.
+The distinction is important:
 
-Harmonization is therefore a decision about whether two pieces of data are equivalent enough to participate in the same business concept. If that decision is wrong, calculated insights, segments, activations, reporting, and AI experiences can all inherit the mistake.
+| Question | Architectural responsibility |
+| --- | --- |
+| Which source namespace does `A91` belong to? | Key qualification and relationship modeling |
+| Does legacy customer `A91` refer to Emily Carter in CRM? | Identity resolution and supporting evidence |
+| Does an order belong to that source customer record? | Correct source foreign-key relationship |
+| Should the order contribute to Emily's lifetime value? | Valid relationships, identity mapping, and the metric's business definition |
 
-A technically successful mapping can create a very convincing version of the wrong truth.
+A correctly qualified order key can coexist with a bad identity match. Conversely, accurate identity matching cannot repair a transaction joined through the wrong foreign key. These are different controls, and both must hold before a downstream measure can be trusted.
 
-## Keys Have Context Too
+## Identity Resolution Is a Decision With Two Different Failure Modes
 
-Identifiers create a similar problem.
+Identity resolution takes the challenge beyond field definitions and keys. It evaluates evidence from multiple sources to determine which profiles belong to the same individual or other supported entity.
 
-Suppose two source systems both contain customer ID `A91`. It is tempting to join them, especially when teams have spent years treating fields named `Customer_ID` or `Member_ID` as though the names themselves guaranteed uniqueness.
+For each pair of source profiles, there are four possible outcomes when we compare the system's decision against known reality:
 
-They do not.
-
-An identifier is unique only within the namespace in which it was designed to be unique.
-
-This is where Fully Qualified Keys matter in Data 360. Key qualifiers allow Data 360 to distinguish source keys that may contain the same raw value after multiple data streams are harmonized into shared DMOs.
-
-Conceptually:
-
-`A91 + LegacyWarehouse`
-
-is different from:
-
-`A91 + LoyaltyPlatform`
-
-until the organization has a defensible reason to relate them.
-
-The downstream effect of getting this wrong can be significant. An incorrect key relationship can attach an order to the wrong person. That order can alter a calculated insight, the insight can change segment eligibility, and the segment can drive an activation.
-
-Before trusting a field called `Customer_ID`, I would want to know how it was generated, whether it is unique only within one source, whether it can be reused, and what entity it actually identifies.
-
-A person, household, account, browser, membership, and subscription are not interchangeable simply because they all have IDs.
-
-## Identity Resolution Is a Classification Problem
-
-Identity resolution is one of the most valuable capabilities in Data 360, but it is also where source-data assumptions become visible quickly.
-
-Every match rule is effectively answering a classification question:
-
-**Should these two records be treated as the same person?**
-
-That decision produces four possible outcomes.
-
-| Reality \ Identity Decision | Data 360 Matches the Profiles | Data 360 Keeps the Profiles Separate |
+| Reality / Identity Decision | Data 360 matches the profiles | Data 360 keeps the profiles separate |
 | --- | --- | --- |
-| **They are the same person** | **True Positive** — correct match | **False Negative** — false split |
-| **They are different people** | **False Positive** — false merge | **True Negative** — correct separation |
-
-The true-positive and true-negative quadrants are the desired outcomes. The two error quadrants are where the business risk begins.
+| **Same person** | **True positive** — correct match | **False negative** — false split |
+| **Different people** | **False positive** — false merge | **True negative** — correct separation |
 
 ![Identity-resolution matrix: true positive (correct match), false negative (false split), false positive (false merge), and true negative (correct separation), showing the impact of mistakes on profiles, insights, segments, and activation.](/images/posts/2026-10-23-data-longevity-debt-data-360/identity-resolution-outcomes.png)
 
-*Figure: Matching errors propagate downstream. A false merge blends different people; a false split fragments one person across records.*
+*Figure: False merges can mix two people's information; false splits can keep one person's activity fragmented. The severity depends on how the resulting profiles are used.*
 
-### False Positive: The False Merge
+### A False Merge Can Make the Profile More Complete—and Less Correct
 
-A false positive occurs when two different people are incorrectly unified.
+Suppose Emily and another household member share `carterfamily@example.com`. If a ruleset relies on that email alone, two distinct people could be grouped together. Salesforce cautions against matching on a single shared contact point for precisely this reason. [4](#ref-4)
 
-Suppose Emily and another household member share:
+The resulting unified profile may contain more purchases, browsing activity, contact points, and service history than either individual actually generated. A lifetime-value calculation can be overstated. A recommendation can be based on another person's preferences. In a sensitive context, the mistake can create a risk of exposing or acting on information associated with someone else.
 
-`carterfamily@example.com`
+More information in a profile is not the same as more accurate information.
 
-If the identity strategy relies too heavily on email, their profiles could be clustered together.
+### A False Split Can Hide a Relationship That Already Exists
 
-The problem is no longer just an incorrect profile count. The unified profile can now combine purchases, preferences, service interactions, browsing behavior, and contact points belonging to different people.
+Now imagine Emily's commerce profile uses a different email address and an outdated phone number. The match rules fail to link it to her CRM profile, even though both represent the same person.
 
-The error can then escalate:
+Her purchases remain with one profile while recent browsing sits with another. A campaign may treat an existing customer as a new prospect, or an insight may understate the total relationship because the relevant activity is spread across profiles. This is a completeness failure rather than an over-grouping failure, but it can still distort business decisions.
 
-**Incorrect match → incorrect unified profile → incorrect calculated insight → incorrect segment membership → incorrect activation**
+### Why a Single Matching Rule Is Not the Whole Risk
 
-If the combined profile appears to have higher lifetime value or stronger product intent, Emily may qualify for a segment because someone else's behavior was added to hers.
+Identity resolution can also produce **transitive matches**. If profile A matches B under one rule, and B matches C under another, all three can become part of the same unified cluster even if A and C do not directly satisfy a rule together. B acts as the bridge. [5](#ref-5)
 
-In a low-risk retail use case, that may create an awkward experience. In financial services, healthcare, insurance, or other privacy-sensitive contexts, a false merge can create much greater risk because one person's information may influence an action toward another.
+That makes cluster-level review essential. A test that only asks whether two familiar records match can overlook an unexpected third record entering through a different rule. Household data, recycled phone numbers, shared addresses, and other ambiguous identifiers are particularly valuable cases to test.
 
-### False Negative: The False Split
+A high consolidation rate does not settle the question either. Salesforce calculates it from the reduction in source profiles to unified profiles. That reports *how much* consolidation occurred, not *whether* the resulting clusters reflect reality. [6](#ref-6)
 
-A false negative creates the opposite problem.
+Match quality should be evaluated using verified samples, known positive and negative cases, and the business consequences of the errors found. The acceptable trade-off may differ between exploratory analytics and an activation that could disclose sensitive information.
 
-Emily Carter in CRM and Emily J. Carter in commerce are actually the same person, but the rules fail to connect them because the emails differ and one phone number is outdated.
+## A Unified Profile Is Not a Golden Record
 
-Now one customer survives as two profiles.
+Once Emily's records are linked, a second question appears: which source value should the business use?
 
-Her purchases may sit under one profile while browsing behavior sits under another. Lifetime value is understated. Marketing can treat an existing customer like a prospect. Two profiles may qualify for the same campaign. Attribution becomes fragmented because engagement and purchase are never connected.
+Data 360 identity resolution creates unified profiles and retains links back to the source records. It does not replace source systems or function as a traditional master data management system that establishes a single authoritative golden record for every attribute. [7](#ref-7)
 
-The downstream path becomes:
+Reconciliation rules can select a value for eligible single-valued fields on the unified profile, such as a name. They do **not** reconcile contact-point email addresses, phone numbers, and addresses in the same way; multiple contact points can remain associated with the unified individual. For certain activations, source-priority settings determine which available contact point is selected. [8](#ref-8)
 
-**Missed match → fragmented profile → incomplete insight → missed or duplicated segment → weak activation**
+That distinction matters in Emily's address history. CRM has her previous address, commerce has the destination of her latest shipment, and loyalty has an address entered at registration. The commerce address is not automatically the correct residential address: it could be where Emily sent a gift. Fulfillment, service, and marketing may each need a different address-selection policy, backed by the right source attributes and business context.
 
-False negatives tend to hurt completeness, analytics, personalization, attribution, and customer experience. False positives often carry a higher privacy or inappropriate-disclosure risk.
+In other words, identity resolution answers *which records appear to belong together*. Reconciliation and downstream business logic answer *which values are appropriate for a particular purpose*. Neither removes the need for source ownership and governance.
 
-Both matter, but they fail differently.
+There is a further longevity consideration: a Unified Individual ID is not necessarily immutable. When profiles merge or split following changes in data or matching, some records may become associated with a different unified ID. Integrations that persist that ID as a permanent external customer identifier need a strategy for those changes and for tracing source-to-unified relationships. [9](#ref-9)
 
-## Consolidation Rate Is Not Identity Quality
+A trusted profile is therefore not one in which every attribute has a single winner. It is one in which the relationships, selected values, and limitations are understood.
 
-Data 360 exposes a consolidation rate showing how source profiles were reduced into unified profiles.
+## The Risk Changes When a Profile Drives an Action
 
-It is useful.
+Not every Data 360 use case follows a fixed sequence of identity resolution, calculated insights, segmentation, and activation. Some segments do not require calculated insights, and some use cases do not require unified profiles at all. But in a customer-unification use case like Emily's, those capabilities can form a consequential chain:
 
-It is not a measure of truth.
+**Source records → harmonized model → identity links → customer metrics or attributes → audience decision → customer-facing action**
 
-If 100 source profiles become 70 unified profiles, the rate tells us that records were combined. It does not tell us whether the combinations were correct.
+An upstream mistake can influence more than a dashboard. Suppose a falsely merged profile combines Emily's purchases with a household member's browsing. An insight measuring purchase value or product interest may now be overstated. A segment using that information could select Emily for an offer that makes little sense—or, in a more sensitive environment, could create an inappropriate disclosure risk.
 
-A higher rate could mean better identity resolution. It could also mean match rules became too permissive. A lower rate could indicate weak matching, or it could reflect a deliberately conservative strategy designed to avoid false merges.
+Even a *correctly matched* identity does not make every communication appropriate. A unified individual can have multiple email addresses or phone numbers with different consent and preference histories. Salesforce notes that activation contact-point selection can depend on source priority and engagement behavior rather than automatically enforcing each contact point's consent status. Organizations must design and verify the necessary consent and channel-eligibility controls before activation. [10](#ref-10)
 
-The right rate depends on the data, use case, and cost of being wrong.
+This is why I would test the **activation decision**, not only the matching configuration. For every customer-facing action, ask: Which identity evidence was used? Which attributes determined eligibility? Which contact point was selected? What permission applies to that contact point and purpose? What should happen when the evidence is incomplete or contradictory?
 
-A useful identity review should therefore inspect real matched clusters, known household cases, shared contact points, and samples designed specifically to find false merges and false splits.
+Speed adds a separate consideration. Scheduled and real-time identity resolution do not operate identically; real-time matching uses exact or exact-normalized methods even when the scheduled configuration includes other match methods. Low latency can improve responsiveness, but it should not be mistaken for broader matching coverage or higher certainty. [11](#ref-11)
 
-The better question is not:
+## Repaying Data Longevity Debt: An Architect's Approach
 
-> How many profiles did we unify?
+The solution is not to require perfect data before connecting anything. It is to make the assumptions behind each important decision visible, testable, and owned.
 
-It is:
+I would begin with one business outcome—say, identifying existing customers who have recently shown product interest but have not purchased. Then I would work backward through the minimum data, relationships, definitions, and controls required to support that outcome.
 
-> How confidently can we defend the profiles we unified?
-
-## A Unified Profile Is Not Automatically a Golden Record
-
-The phrase *unified profile* can create another misconception: that Data 360 produces one perfect customer record that replaces contradictions across source systems.
-
-That is not what identity resolution does.
-
-The unified profile links source records determined to belong to the same entity. Data 360 preserves those relationships, while reconciliation rules can determine which value is surfaced for fields that require a selected value.
-
-Return to Emily's address.
-
-CRM contains her previous address. Commerce contains the address from her most recent shipment. Loyalty contains the address entered when she joined.
-
-A reconciliation rule might prioritize commerce because recent fulfillment data is generally more current. But configuring source priority does not prove that the commerce value is universally correct. Emily may have shipped a gift somewhere else.
-
-The technology can execute a precedence rule. It cannot decide the business meaning of the field on the organization's behalf.
-
-Different systems may legitimately own different facts. Commerce may own fulfilled-order history. CRM may own service relationships. A preference center may own communication preferences. Marketing Cloud Personalization may own recent digital behavior. Loyalty may own membership status.
-
-The enterprise may not need one system to "win the customer." It may need **attribute-level authority**.
-
-That is a governance model, not just a reconciliation setting.
-
-## Zero Copy Removes Movement, Not Interpretation
-
-The same distinction applies to zero-copy data federation.
-
-Federation can allow Data 360 to work with information stored externally without requiring every row to be duplicated into another storage layer. That can be valuable for large datasets.
-
-But zero copy solves a movement problem.
-
-It does not solve a meaning problem.
-
-Suppose the organization federates digital interaction data containing:
-
-`visitor_id`
-
-`event_type`
-
-`page_category`
-
-`event_timestamp`
-
-`campaign_id`
-
-The data may remain outside Data 360, but the organization still needs to know whether visitor IDs persist across devices, when anonymous behavior can be connected to a known customer, how timestamps are standardized, whether bot traffic was removed, and whether the definition of `product_view` changed after a website redesign.
-
-Federation changes where the data is processed. It does not remove the need to understand the data.
-
-The same logic should guide scope. If the first use case needs 30 days of digital behavior, years of history may add complexity without improving the decision.
-
-The better architectural question is not "How much data can Data 360 access?"
-
-It is "Which data is necessary to support this decision?"
-
-## Identity Errors Become More Expensive After Activation
-
-Identity resolution sits upstream of systems that can act.
-
-Once profiles are unified, organizations may calculate metrics, build segments, personalize experiences, trigger flows or data actions, enrich CRM, or activate audiences downstream.
-
-The path looks like this:
-
-**Source data → DLO → DMO → identity resolution → unified profile → calculated insight → segment → activation**
-
-Every stage assumes the previous stage was sufficiently correct for the next decision.
-
-If two people were falsely merged, calculated insights can aggregate their behavior. Segment criteria can evaluate that combined profile. Activation can carry the mistake into a customer-facing channel.
-
-If one person was falsely split, insights can understate the relationship. A valuable customer may miss a loyalty segment while another fragment receives acquisition messaging.
-
-Real-time processing can increase the consequence because speed reduces the time between a bad identity decision and a downstream action. Faster architecture does not make the decision more accurate; it simply allows the outcome to travel more quickly.
-
-The acceptable error rate should therefore be driven by the activation.
-
-A false split in exploratory analytics may be tolerable while match rules are refined. A false merge that can influence regulated communication may not be.
-
-Identity resolution should be designed backward from business consequence, not forward from whichever fields happen to be available.
-
-## Governance Begins Where Configuration Stops
-
-At some point, every Data 360 implementation reaches questions the platform cannot answer.
-
-What exactly qualifies someone as active? Which source owns legal name? Which address should be used for which purpose? How long should behavioral history remain relevant? Which identifiers are reliable enough for matching? What false-positive risk is acceptable? Who approves changes to an identity rule after downstream activations depend on it?
-
-These are governance decisions.
-
-Data 360 provides technical mechanisms to support governance: data spaces, lineage, classifications, policies, masking, reconciliation rules, identity rules, and access controls.
-
-But configuration cannot replace ownership.
-
-The platform can enforce a rule only after the organization has decided what that rule should be.
-
-Different teams can maintain high-quality data inside their own workflows while the enterprise still lacks a shared definition for the attributes that matter across Sales, Marketing, Service, and Commerce.
-
-Connecting the systems exposes those disagreements. Resolving them requires business ownership.
-
-## A Practical Data 360 Readiness Sequence
-
-I would not begin a Data 360 implementation by asking every team which systems they want connected.
-
-I would begin with the decision the business wants to improve, then work backward through the data required to support it.
-
-| Stage | Question to answer |
+| Control | What I would establish before activation |
 | --- | --- |
-| **1. Business decision** | What specific decision or experience are we trying to improve? |
-| **2. Source selection** | Which datasets are actually necessary? |
-| **3. Semantic review** | What do critical fields mean, and has that meaning changed over time? |
-| **4. Ingestion or federation** | Should the data be ingested or federated, and why? |
-| **5. Harmonization** | Which source attributes truly represent the same DMO concepts? |
-| **6. Keys and relationships** | What does each identifier represent, and where are FQKs required? |
-| **7. Identity design** | What evidence is enough to match, and what are the costs of false merges and splits? |
-| **8. Reconciliation** | Which sources are authoritative for which attributes and use cases? |
-| **9. Insights and segmentation** | Do calculated metrics and segments still make sense against real unified profiles? |
-| **10. Activation controls** | What action can the data influence, and what quality risk is acceptable? |
-| **11. Monitoring** | How will source drift, semantic changes, and match-quality deterioration be detected? |
+| **Business definition history** | Document what *active*, *customer*, *purchase*, and *product view* meant over time, including effective dates and known changes. |
+| **Attribute-level ownership** | Identify the authoritative source for each fact and the exceptions that depend on use, such as shipping versus residential address. |
+| **Key and relationship integrity** | Verify key qualifiers on relevant primary and foreign keys, relationship cardinality, and joins used in metrics. |
+| **Identity quality tests** | Review known matches, known nonmatches, shared contact points, false merges, false splits, and transitive clusters. |
+| **Decision and consent controls** | Validate segment logic, metric definitions, contact-point selection, consent, and appropriate behavior when confidence is insufficient. |
+| **Change monitoring** | Detect source schema or meaning changes, unexpected consolidation shifts, new bridge clusters, and changes to unified-profile associations. |
 
-This order matters because downstream sophistication cannot compensate for upstream ambiguity.
+These are not six one-time configuration tasks. Source applications change, new data arrives, marketing definitions evolve, and matching rules are adjusted. A use case that passed validation at launch can drift later unless the team knows which assumptions to revisit.
 
-A well-designed segment does not fix an incorrect DMO mapping. A real-time activation does not fix a false merge. A calculated insight does not fix a metric whose definition changed halfway through the historical period.
+The controls also need different owners. Data engineers can verify the pipelines and joins; an architect can make the relationships and trade-offs explicit; business owners must approve the meaning of *active customer* and the circumstances in which a customer qualifies for outreach; privacy and channel owners must govern permissible use. None of those responsibilities can be delegated entirely to a platform setting.
 
-## Data 360 Readiness Is Really Decision Readiness
+A useful readiness review should produce evidence, not merely a successful processing status. Can the team reproduce a metric under its documented definition? Can it explain why two source records were unified? Can it show that a selected contact point is eligible for the intended communication? Can it identify which downstream processes need review when a source definition changes?
 
-The strongest Data 360 implementations are not the ones that connect the most systems first. They are the ones that can defend the path from source data to business action.
+When the answers are available, the organization can make informed compromises. It may accept a conservative match strategy for a sensitive activation while using a broader, clearly qualified view for non-customer-facing analysis. It may exclude historical records whose definitions cannot be reconstructed rather than silently treating them as comparable. Those decisions are more defensible than assuming a completed pipeline is a trusted pipeline.
 
-For every important activation, the organization should be able to explain where the underlying data came from, what the critical fields mean, how identities were matched, which values were reconciled, how fresh the data needs to be, and what happens when those assumptions are wrong.
+## Back to Emily: What a Trusted Decision Looks Like
 
-That is why data longevity debt matters.
+Return to the original marketing request. Emily has recent browsing activity, several source-system identifiers, a loyalty membership, and a long purchase history. The goal is still to decide whether a personalized interaction would be useful.
 
-Enterprise data rarely becomes unreliable because every source suddenly starts producing garbage. More often, perfectly reasonable systems evolve under different teams, definitions, and time periods until the enterprise can no longer assume that similarly named fields or identifiers describe the same thing.
+A defensible implementation can now explain its choices. The team defines *existing customer* consistently for the relevant period. It qualifies identifiers by source and checks relationships before attributing transactions. It connects anonymous browsing to Emily only when sufficient identity evidence is available. It tests household-sharing scenarios to avoid combining another person's activity with hers. It interprets historical statuses under the definitions that existed when they were recorded. And before communicating, it selects an appropriate contact point and verifies that the intended use is permitted.
 
-Data 360 makes those inconsistencies visible because it asks the organization to connect them. That visibility is not a weakness of the platform. It is one of the reasons the platform can be valuable.
+Emily's profile may still contain several addresses, incomplete older transactions, or activity that cannot be confidently attributed. That does not make the implementation a failure. The team knows what the profile can support and where it should avoid claiming certainty.
 
-But it changes the responsibility of the implementation team.
-
-The goal is not simply to create a unified profile. The goal is to create a profile whose identity, attributes, history, and downstream use can be explained and defended.
-
-Salesforce can provide the architecture to connect records, harmonize models, resolve identities, calculate insights, build segments, and activate data.
-
-The organization still has to supply the meaning.
-
-And the quality of that meaning determines the quality of every decision that follows.
+Data 360 makes it possible to bring that evidence together. The architect's responsibility is to preserve the distinctions that allow the business to use it responsibly. When the marketing team can explain **why Emily qualifies, which activity genuinely belongs to her, and which communication she has permitted**, the unified profile has served its purpose—not because it contains everything, but because it supports a decision the business can defend.
 
 ---
 
 ## References
 
-- [Salesforce Architects: Data 360 Architecture](https://architect.salesforce.com/docs/architect/fundamentals/guide/data-360-architecture)
-- [Salesforce Help: Connect Data in Data 360](https://help.salesforce.com/s/articleView?id=data.c360_a_data_ingestion.htm&language=en_US&type=5)
-- [Salesforce Help: Fully Qualified Keys](https://help.salesforce.com/s/articleView?id=data.c360_a_fully_qualified_keys.htm&language=en_US&type=5)
-- [Salesforce Help: Best Practices for Fully Qualified Keys](https://help.salesforce.com/s/articleView?id=data.c360_a_key_qualifier_best_practices.htm&language=en_US&type=5)
-- [Salesforce Help: Identity Resolution Match Rules](https://help.salesforce.com/s/articleView?id=sf.c360_a_match_rules.htm&language=en_US&type=5)
-- [Salesforce Help: Identity Resolution Match Methods](https://help.salesforce.com/s/articleView?id=data.c360_a_match_rules_criteria_fuzzy_normalized.htm&language=en_US&type=5)
-- [Salesforce Help: Identity Resolution Ruleset Processing Results](https://help.salesforce.com/s/articleView?id=data.c360_a_resolution_summary.htm&language=en_US&type=5)
-- [Salesforce Help: Reconciliation Rules for Unified Individuals](https://help.salesforce.com/s/articleView?id=data.c360_a_omni_reconciliation.htm&language=en_US&type=5)
-- [Salesforce Help: Zero Copy Data Federation](https://help.salesforce.com/s/articleView?id=data.c360_a_file_federation.htm&language=en_US&type=5)
+1. <a id="ref-1"></a> [Salesforce Architects — Data 360 Architecture](https://architect.salesforce.com/docs/architect/fundamentals/guide/data-360-architecture)
+2. <a id="ref-2"></a> [Salesforce Help — Zero Copy Data Federation](https://help.salesforce.com/s/articleView?id=data.c360_a_file_federation.htm&language=en_US&type=5)
+3. <a id="ref-3"></a> [Salesforce Help — Best Practices for Fully Qualified Keys](https://help.salesforce.com/s/articleView?id=sf.c360_a_key_qualifier_best_practices.htm&language=en_US&type=5)
+4. <a id="ref-4"></a> [Salesforce Help — Configure Identity Resolution Match Rules](https://help.salesforce.com/s/articleView?id=data.c360_a_match_rules_configure.htm&language=en_US&type=5)
+5. <a id="ref-5"></a> [Salesforce Help — Transitive Match in Identity Resolution](https://help.salesforce.com/s/articleView?id=004811108&language=en_US&type=1)
+6. <a id="ref-6"></a> [Salesforce Help — Identity Resolution Ruleset Processing Results](https://help.salesforce.com/s/articleView?id=sf.c360_a_resolution_summary.htm&language=en_US&type=5)
+7. <a id="ref-7"></a> [Salesforce Help — Unify Source Profiles](https://help.salesforce.com/s/articleView?id=data.c360_a_identity_resolution_unify_source_profiles.htm&language=en_US&type=5)
+8. <a id="ref-8"></a> [Salesforce Help — Identity Resolution Reconciliation Rules](https://help.salesforce.com/s/articleView?id=sf.c360_a_reconciliation_rules.htm&language=en_US&type=5) and [Contact Points and Source Priority Order](https://help.salesforce.com/s/articleView?id=sf.c360_a_contact_points.htm&language=en_US&type=5)
+9. <a id="ref-9"></a> [Salesforce Help — Changes to a Unified Individual ID](https://help.salesforce.com/s/articleView?id=000395529&language=en_US&type=1)
+10. <a id="ref-10"></a> [Salesforce Help — Omnichannel Considerations and Best Practices](https://help.salesforce.com/s/articleView?id=data.c360_a_omni_best_practices.htm&language=en_US&type=5)
+11. <a id="ref-11"></a> [Salesforce Help — Scheduled and Real-Time Matching in Identity Resolution](https://help.salesforce.com/s/articleView?id=data.c360_a_identity_resolution_match_type_compare.htm&language=en_US&type=5)
